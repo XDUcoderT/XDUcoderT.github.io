@@ -1,0 +1,726 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Tao Chen">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1、JDK8之前版本，HashMap的数据结构是怎样的？答 ： 数组+链表&#x2F;红黑树1、HashMap 底层的数据是数组被成为哈希桶（默认的初始值为 16 ），每个桶存放的是链表，链表中的每个节点，就是 HashMap 中的每个元素。2、在 JDK 8 当链表长度大于等于 8 时，就会转成红黑树的数据结构，以提升查询和插入的效率。HashMap在Node数组中进行哈希查找,使用链接法处理冲">
+<meta property="og:type" content="article">
+<meta property="og:title" content="牛客网Java刷题">
+<meta property="og:url" content="http://example.com/2022/09/06/%E7%89%9B%E5%AE%A2%E7%BD%91Java%E5%88%B7%E9%A2%98/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1、JDK8之前版本，HashMap的数据结构是怎样的？答 ： 数组+链表&#x2F;红黑树1、HashMap 底层的数据是数组被成为哈希桶（默认的初始值为 16 ），每个桶存放的是链表，链表中的每个节点，就是 HashMap 中的每个元素。2、在 JDK 8 当链表长度大于等于 8 时，就会转成红黑树的数据结构，以提升查询和插入的效率。HashMap在Node数组中进行哈希查找,使用链接法处理冲">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/1662277611406.png">
+<meta property="og:image" content="http://example.com/images/1662277625158.png">
+<meta property="og:image" content="http://example.com/images/1662277638189.png">
+<meta property="og:image" content="http://example.com/images/1662277655335.png">
+<meta property="og:image" content="http://example.com/images/1662277664139.png">
+<meta property="og:image" content="http://example.com/images/1662299525999.png">
+<meta property="og:image" content="http://example.com/images/1662304474513.png">
+<meta property="og:image" content="http://example.com/images/1662305821345.png">
+<meta property="og:image" content="http://example.com/images/1662305910334.png">
+<meta property="og:image" content="http://example.com/images/1662306266132.png">
+<meta property="og:image" content="http://example.com/images/1662307013475.png">
+<meta property="og:image" content="http://example.com/images/1662306954574.png">
+<meta property="article:published_time" content="2022-09-06T02:06:50.430Z">
+<meta property="article:modified_time" content="2022-11-12T08:05:49.988Z">
+<meta property="article:author" content="Tao Chen">
+<meta property="article:tag" content="八股废柴">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/images/1662277611406.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>牛客网Java刷题 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>晨の私密花园</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于我
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg/1.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="牛客网Java刷题"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-06 10:06" pubdate>
+          2022年9月6日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          45 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">牛客网Java刷题</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="1、JDK8之前版本，HashMap的数据结构是怎样的？"><a href="#1、JDK8之前版本，HashMap的数据结构是怎样的？" class="headerlink" title="1、JDK8之前版本，HashMap的数据结构是怎样的？"></a>1、JDK8之前版本，HashMap的数据结构是怎样的？</h3><p><strong>答</strong> ： 数组+链表&#x2F;红黑树<br>1、HashMap 底层的数据是数组被成为哈希桶（默认的初始值为 16 ），每个桶存放的是链表，链表中的每个节点，就是 HashMap 中的每个元素。<br>2、在 JDK 8 当链表长度大于等于 8 时，就会转成红黑树的数据结构，以提升查询和插入的效率。<br>HashMap在Node数组中进行哈希查找,使用链接法处理冲突,冲突较少时使用链表,目前版本当冲突的键达到8时,会把链表转换为红黑树.</p>
+<h3 id="2、假设有以下代码"><a href="#2、假设有以下代码" class="headerlink" title="2、假设有以下代码"></a>2、假设有以下代码</h3><p><strong>String s &#x3D; “hello”；String t &#x3D; “hello”；char c [ ] &#x3D; {‘h’,’e’,’l’,’l’,’o’}；</strong><br><strong>返回false的是：</strong></p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs lasso">s.<span class="hljs-keyword">equals</span> (t)；<br>t.<span class="hljs-keyword">equals</span> (c)；<br>s==t<br>t.<span class="hljs-keyword">equals</span> (<span class="hljs-literal">new</span> <span class="hljs-built_in">String</span> (<span class="hljs-string">&quot;hello&quot;</span>))；<br></code></pre></td></tr></table></figure>
+
+<p><strong>答：</strong> B<br>    本题我们需要掌握三个知识 ： </p>
+<ol>
+<li><p>“&#x3D;&#x3D; 和 equals的区别” ： </p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">== 的作用：<br>	基本类型：比较值是否相等<br>	引用类型：比较内存地址值是否相等<br>equals 的作用:<br>	只能用于引用类型：默认情况下，比较内存地址值是否相等。可以按照需求逻辑，重写对象的equals方法。<br></code></pre></td></tr></table></figure>
+</li>
+<li><pre><code class="hljs">String两种创建对象的方式
+</code></pre>
+<p>String str &#x3D; “123”;</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">通过引号直接创建字符串对象，先会先从常量池中判断是否存在 “123” 对象，如果不存在，则会在常量池中创建该对象，并且返回常量池中 “123” 对象的引用给 str；如果存在 “123” 话，则直接返回常量池中 “123” 的对象引用。<br></code></pre></td></tr></table></figure></li>
+</ol>
+<p>String str &#x3D; new String(“123”); 
+　　</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">首先 “123” 是一个常量字符串，因此会先在常量池中创建 “123” 字符串对象，然后在堆中再创建一个字符串对象，将 “123” 的字符数组复制到堆中新创建的对象的字符数组上，因此该方式不仅会在堆中，还会在常量池中创建 “123” 字符串对象。str最终指向的是堆中的字符串对象<br></code></pre></td></tr></table></figure>
+
+<h3 id="3、下列代码打印出的结果为"><a href="#3、下列代码打印出的结果为" class="headerlink" title="3、下列代码打印出的结果为"></a>3、下列代码打印出的结果为</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs typescript"> <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TestDemo</span><br>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-title class_">String</span> output = <span class="hljs-string">&quot;&quot;</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params">inti</span>)<br>    &#123;<br>        <span class="hljs-keyword">try</span><br>        &#123;<br>            <span class="hljs-keyword">if</span> (i == <span class="hljs-number">1</span>)<br>            &#123;<br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Exception</span>();<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">catch</span> (<span class="hljs-title class_">Exception</span> e)<br>        &#123;<br>            output += <span class="hljs-string">&quot;2&quot;</span>;<br>            <span class="hljs-keyword">return</span> ;<br>        &#125; <span class="hljs-keyword">finally</span><br>        &#123;<br>            output += <span class="hljs-string">&quot;3&quot;</span>;<br>        &#125;<br>        output += <span class="hljs-string">&quot;4&quot;</span>;<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"><span class="hljs-built_in">String</span>[] args</span>)<br>    &#123;<br>        <span class="hljs-title function_">foo</span>(<span class="hljs-number">0</span>);<br>        <span class="hljs-title function_">foo</span>(<span class="hljs-number">1</span>);<br>        <span class="hljs-title class_">System</span>.<span class="hljs-property">out</span>.<span class="hljs-title function_">println</span>(output);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>答：</strong> 首先是foo(0),在try代码块中未抛出异常，finally是无论是否抛出异常必定执行的语句，<br>所以 output +&#x3D; “3”;然后是 output +&#x3D; “4”;<br>执行foo(1)的时候，try代码块抛出异常，进入catch代码块，output +&#x3D; “2”;<br>前面说过<strong>finally是必执行的</strong>，<strong>即使return也会执行</strong>output +&#x3D; “3”<br>由于catch代码块中有return语句，最后一个output +&#x3D; “4”不会执行。<br>所以结果是3423</p>
+<h3 id="4、下面是java语言的基本特性是？（）"><a href="#4、下面是java语言的基本特性是？（）" class="headerlink" title="4、下面是java语言的基本特性是？（）"></a>4、下面是java语言的基本特性是？（）</h3><p>A.封装<br>B.多态<br>C.继承<br>D.高效<br><strong>答：</strong> 封装 继承 多态 还有个抽象（ABC）</p>
+<h3 id="4、Servlet的生命周期"><a href="#4、Servlet的生命周期" class="headerlink" title="4、Servlet的生命周期"></a>4、Servlet的生命周期</h3><p>Servlet的生命周期一般可以用三个方法来表示：<br>init()：仅执行一次，负责在装载Servlet时初始化Servlet对象<br>service() ：核心方法，一般HttpServlet中会有get,post两种处理方式。在调用doGet和doPost方法时会构造servletRequest和servletResponse请求和响应对象作为参数。<br>destory()：在停止并且卸载Servlet时执行，负责释放资源</p>
+<h3 id="5、能用来修饰interface的有（）"><a href="#5、能用来修饰interface的有（）" class="headerlink" title="5、能用来修饰interface的有（）"></a>5、能用来修饰interface的有（）</h3><p>接口是用来被类实现的，它的权限当然默认是公共的为public。接口内的方法也默认为public abstract，是公共权限的抽象方法。<br>但是在jdk1.8后，接口中也可以有default修饰的静态方法，但是这个方法一定要有方法体。我们可以通过接口名.方法名的方式直接调用该方法。</p>
+<h3 id="6、执行以下程序后的输出结果是（）"><a href="#6、执行以下程序后的输出结果是（）" class="headerlink" title="6、执行以下程序后的输出结果是（）"></a>6、执行以下程序后的输出结果是（）</h3><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs dart">public <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>&#123;<br>    public <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> main(<span class="hljs-built_in">String</span>[] args) &#123;<br>        <span class="hljs-built_in">StringBuffer</span> a = <span class="hljs-keyword">new</span> <span class="hljs-built_in">StringBuffer</span>(<span class="hljs-string">&quot;A&quot;</span>); <br>        <span class="hljs-built_in">StringBuffer</span> b = <span class="hljs-keyword">new</span> <span class="hljs-built_in">StringBuffer</span>(<span class="hljs-string">&quot;B&quot;</span>); <br>        <span class="hljs-keyword">operator</span>(a, b); <br>        System.out.println(a + <span class="hljs-string">&quot;,&quot;</span> + b); <br>    &#125; <br>    public <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-keyword">operator</span>(<span class="hljs-built_in">StringBuffer</span> x, <span class="hljs-built_in">StringBuffer</span> y) &#123; <br>        x.append(y); y = x; <br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>StringBuffer a &#x3D; newStringBuffer(“A”);<br>StringBuffer b &#x3D; newStringBuffer(“B”);<br>此时内存中的状态如下图所示：<br><img src="/./images/1662277611406.png" srcset="/img/loading.gif" lazyload alt="enter description here"></p>
+<p>publicstaticvoidoperator(StringBuffer x, StringBuffer y) {<br>    x.append(y); y &#x3D; x;<br>}<br>进入如下方法后,内存中的状态为：<br><img src="/./images/1662277625158.png" srcset="/img/loading.gif" lazyload alt="enter description here"></p>
+<p> x.append(y);<br>这条语句执行后,内存的状态为：</p>
+<p><img src="/./images/1662277638189.png" srcset="/img/loading.gif" lazyload alt="enter description here"><br> y &#x3D; x;<br>这条语句执行后,内存的状态为：</p>
+<p><img src="/./images/1662277655335.png" srcset="/img/loading.gif" lazyload alt="enter description here"><br>当operator方法执行完毕后内存中的状态为：<br><strong>因为方法执行完毕，局部变量消除。</strong><br>有内存中的状态,可以知道最后的结果。<br><img src="/./images/1662277664139.png" srcset="/img/loading.gif" lazyload alt="enter description here"></p>
+<h3 id="7、一般用-创建InputStream对象-表示从标准输入中获取数据-用-创建OutputStream对象，表示输出到标准输出设备中"><a href="#7、一般用-创建InputStream对象-表示从标准输入中获取数据-用-创建OutputStream对象，表示输出到标准输出设备中" class="headerlink" title="7、一般用()创建InputStream对象,表示从标准输入中获取数据,用()创建OutputStream对象，表示输出到标准输出设备中"></a>7、一般用()创建InputStream对象,表示从标准输入中获取数据,用()创建OutputStream对象，表示输出到标准输出设备中</h3><p>A.System.in System.out<br>B.System.out System.in<br>C.System.io.in System.io.out<br>D.System.io.out System.io.in</p>
+<p>A</p>
+<h3 id="8、关于ASCII码和ANSI码，以下说法不正确的是（）"><a href="#8、关于ASCII码和ANSI码，以下说法不正确的是（）" class="headerlink" title="8、关于ASCII码和ANSI码，以下说法不正确的是（）"></a>8、关于ASCII码和ANSI码，以下说法不正确的是（）</h3><p>A.标准ASCII只使用7个bit<br>B.在简体中文的Windows系统中，ANSI就是GB2312<br>C.ASCII码是ANSI码的子集<br>D.ASCII码都是可打印字符<br><strong>答：</strong> D<br><strong>ANSCII和ANSI核心区别：</strong><br>ASCII面向美国以及一些西欧文字编码方案<br>ANSI编码包含ASCII之外还有其他国家自己的编码方案</p>
+<p>ASCII(American Standard Code for Information Interchange,美国信息交换标准代码)<br><strong>ASCII是什么：</strong><br>ASCII一种标准的单字节字符编码方案<br><strong>ASCII特性:</strong><br>ASCII 保留前 32 个代码（数字 0-31 十进制）用于控制字符：代码最初不打算表示可打印信息（0-127与ANSI编码重叠)</p>
+<p>ANSI(American National Standards Institute,美国国家标准学会)<br><strong>ANSI是什么：</strong><br>ANSI一种字符代码<br><strong>ANSI特性：</strong></p>
+<h2 id="ANSI编码仅在前128（0-127）个与ASCII码相同，之后的字符全是某个国家语言的所有字符。"><a href="#ANSI编码仅在前128（0-127）个与ASCII码相同，之后的字符全是某个国家语言的所有字符。" class="headerlink" title="ANSI编码仅在前128（0-127）个与ASCII码相同，之后的字符全是某个国家语言的所有字符。"></a>ANSI编码仅在前128（0-127）个与ASCII码相同，之后的字符全是某个国家语言的所有字符。</h2><p>ANSI编码用了8个位（最多256种组合可以表示256个不同的字<br>ANSCI编码两个字节最多可以存储的字符数目是2的16次方，即65536个字符<br>各国有各国的标准。受制于当时的条件，不同语言之间的ANSI码之间不能互相转换<br>在简体中文Windows操作系统中，ANSI 编码代表 GB2312编码；<br>在繁体中文Windows操作系统中，ANSI编码代表Big5；<br>在日文Windows操作系统中，ANSI 编码代表 JIS 编码。</p>
+<h3 id="9、往OuterClass类的代码段中插入内部类声明-哪一个是错误的"><a href="#9、往OuterClass类的代码段中插入内部类声明-哪一个是错误的" class="headerlink" title="9、往OuterClass类的代码段中插入内部类声明, 哪一个是错误的:"></a>9、往OuterClass类的代码段中插入内部类声明, 哪一个是错误的:</h3><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-symbol">OuterClass</span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-built_in">float</span> f=<span class="hljs-number">1.0f</span>;<br>    <span class="hljs-comment">//插入代码到这里</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>A.class InnerClass{<br>    public static float func(){return f;}<br>}<br>B.bstract class InnerClass{<br>    public abstract float func(){}<br>}<br>C.static class InnerClass{<br>    protected static float func(){return f;}<br>}<br>D.public class InnerClass{<br>     static float func(){return f;}<br>}</p>
+<p><strong>答：</strong><br>主要考核了这几个知识点：<br>1.静态内部类才可以声明静态方法<br>2.静态方法不可以使用非静态变量<br>3.抽象方法不可以有函数体</p>
+<h3 id="10、以下那些代码段能正确执行"><a href="#10、以下那些代码段能正确执行" class="headerlink" title="10、以下那些代码段能正确执行"></a>10、以下那些代码段能正确执行</h3><p>public static void main(String args[]) {<br>    byte a &#x3D; 3;<br>    byte b &#x3D; 2;<br>    b &#x3D; a + b;<br>    System.out.println(b);<br>}</p>
+<p>public static void main(String args[]) {<br>    byte a &#x3D; 127;<br>    byte b &#x3D; 126;<br>    b &#x3D; a + b;<br>    System.out.println(b);<br>}</p>
+<p>public static void main(String args[]) {<br>    byte a &#x3D; 3;<br>    byte b &#x3D; 2;<br>    a+&#x3D;b;<br>    System.out.println(b);<br>}</p>
+<p>public static void main(String args[]) {<br>    byte a &#x3D; 127;<br>    byte b &#x3D; 127;<br>    a+&#x3D;b;<br>    System.out.println(b);<br>}</p>
+<p><strong>答：</strong><img src="/./images/1662299525999.png" srcset="/img/loading.gif" lazyload alt="enter description here"><br>CD +&#x3D;会进行自动强制转换<br>摘自韩顺平笔记</p>
+<h3 id="11、Java的一些概念，下面哪些描述是正确的："><a href="#11、Java的一些概念，下面哪些描述是正确的：" class="headerlink" title="11、Java的一些概念，下面哪些描述是正确的：(    )"></a>11、Java的一些概念，下面哪些描述是正确的：(    )</h3><p>A.所有的Java异常和错误的基类都是java.lang.Exception, 包括java.lang.RuntimeException<br>B.通过try … catch … finally语句，finally中的语句部分无论发生什么异常都会得到执行<br>C.java中所有的数据都是对象<br>D.Java通过垃圾回收回收不再引用的变量，垃圾回收时对象的finallize方法一定会得到执行<br>E.Java是跨平台的语言，无论通过哪个版本的Java编写的程序都能在所有的Java运行平台中运行<br>F.Java通过synchronized进行访问的同步，synchronized作用非静态成员方法和静态成员方法上同步的目标是不同的</p>
+<p><strong>答：</strong>  A.异常是Exception 错误是ERROR<br>         C.基本类型不是对象<br>         D.finalize]这个方法一个对象只能执行一次, 只能在第一次进入被回收的队列, 而且对象所属于的类重写了			finalize方法才会被执行, 第二次进入回收队列时, 不会再执行finalize方法, 而是直接被二次标记, 在下一			次,GC的时候被清理.<br>         E.java跨平台，但是低版本的JRE不能运行高版本的<br>         F.非静态方法锁的是实例的对象：多个非静态方法同时加了synchronized，互不影响，静态锁的是类：				多个静态方法加了synchronized，如果其中一个方法被锁了，其他的静态方法是拿不到锁的，没法执				行，只有等该方法执行结束，其它静态方法才能拿到锁</p>
+<h3 id="下面关于变量及其范围的陈述哪些是不正确的（）"><a href="#下面关于变量及其范围的陈述哪些是不正确的（）" class="headerlink" title="下面关于变量及其范围的陈述哪些是不正确的（）"></a>下面关于变量及其范围的陈述哪些是不正确的（）</h3><p> 实例变量是类的成员变量<br>实例变量用关键字static声明<br>在方法中定义的局部变量在该方法被执行时创建<br>局部变量在使用前必须被初始化<br><strong>答：</strong> BC<br>C.不是局部变量在该方法被执行&#x2F;调用时创建，而是应该为在该变量被声明并赋值时创建，可以理解为“当代码执行到该变量被赋值的代码时才被创建”</p>
+<h3 id="12、下面哪些接口直接继承自Collection接口（）"><a href="#12、下面哪些接口直接继承自Collection接口（）" class="headerlink" title="12、下面哪些接口直接继承自Collection接口（）"></a>12、下面哪些接口直接继承自Collection接口（）</h3><p>A.List<br>B.Map<br>C.Set<br>D.Iterator</p>
+<p><strong>答：</strong> AC见下图<br><img src="/./images/1662304474513.png" srcset="/img/loading.gif" lazyload alt="enter description here"></p>
+<h3 id="13、有关finally语句块说法正确的是（-）"><a href="#13、有关finally语句块说法正确的是（-）" class="headerlink" title="13、有关finally语句块说法正确的是（ ）"></a>13、有关finally语句块说法正确的是（ ）</h3><p>A.不管catch是否捕获异常，finally语句块都是要被执行的<br>B.在try语句块或catch语句块中执行到System.exit(0)直接退出程序<br>C.finally块中的return语句会覆盖try块中的return返回<br>D.finally 语句块在 catch语句块中的return语句之前执行<br><strong>答：</strong> ABC<br>A选项：<br><img src="/./images/1662305821345.png" srcset="/img/loading.gif" lazyload alt="enter description here"></p>
+<p><img src="/./images/1662305910334.png" srcset="/img/loading.gif" lazyload alt="enter description here"><br>说明A选项正确，无论try中是否有异常，都会执行finally语句</p>
+<p>B选项：<br><img src="/./images/1662306266132.png" srcset="/img/loading.gif" lazyload alt="enter description here"></p>
+<p>B选项正确，如果执行System.exit(0) 程序会直接退出不管return语句</p>
+<p>C选项 ：<br>覆盖前：<br><img src="/./images/1662307013475.png" srcset="/img/loading.gif" lazyload alt="enter description here"></p>
+<p>覆盖后：</p>
+<p><img src="/./images/1662306954574.png" srcset="/img/loading.gif" lazyload alt="enter description here"><br>对于d选项：<br>return语句会先于finally语句块执行但值会被保存且不返回，转而先去运行finally语句块，之后再返回</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%A6%E4%B9%A0-%E9%9D%A2%E8%AF%95/" class="category-chain-item">/学习/面试</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%85%AB%E8%82%A1%E5%BA%9F%E6%9F%B4/">#八股废柴</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>牛客网Java刷题</div>
+      <div>http://example.com/2022/09/06/牛客网Java刷题/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Tao Chen</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年9月6日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/10/30/%E9%9D%A2%E8%AF%95%E9%A2%98/" title="面试题">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">面试题</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/09/03/parameterType%E5%92%8C@Param%E7%9A%84%E5%8C%BA%E5%88%AB/" title="parameterType和@Param的区别">
+                        <span class="hidden-mobile">parameterType和@Param的区别</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

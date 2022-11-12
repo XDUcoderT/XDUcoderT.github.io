@@ -1,0 +1,727 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Tao Chen">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="parameterType 用法1该参数是select、insert等其他的标签中的参数，用于数据的录入使用，该参数只表示一个参数类型，但是如果有多个参数的话，就不要使用该参数了，在讲解该参数之前，我们一定要先有这样的一种意识，如果让我们设计，那么应该怎么设计参数和sql占位符的匹配，这里其实就是按照两种方式类型和名称。 一、一个参数对于这种一个参数的这种其实没有必要写parameterType，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="parameterType和@Param的区别">
+<meta property="og:url" content="http://example.com/2022/09/03/parameterType%E5%92%8C@Param%E7%9A%84%E5%8C%BA%E5%88%AB/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="parameterType 用法1该参数是select、insert等其他的标签中的参数，用于数据的录入使用，该参数只表示一个参数类型，但是如果有多个参数的话，就不要使用该参数了，在讲解该参数之前，我们一定要先有这样的一种意识，如果让我们设计，那么应该怎么设计参数和sql占位符的匹配，这里其实就是按照两种方式类型和名称。 一、一个参数对于这种一个参数的这种其实没有必要写parameterType，">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-09-03T15:39:09.925Z">
+<meta property="article:modified_time" content="2022-11-12T08:24:13.072Z">
+<meta property="article:author" content="Tao Chen">
+<meta property="article:tag" content="刷题">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>parameterType和@Param的区别 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>晨の私密花园</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于我
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg/1.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="parameterType和@Param的区别"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-03 23:39" pubdate>
+          2022年9月3日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          54 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">parameterType和@Param的区别</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="parameterType-用法"><a href="#parameterType-用法" class="headerlink" title="parameterType 用法"></a>parameterType 用法</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">该参数是<span class="hljs-keyword">select</span>、<span class="hljs-keyword">insert</span>等其他的标签中的参数，用于数据的录入使用，该参数只表示一个参数类型，但是如果有多个参数的话，就不要使用该参数了，在讲解该参数之前，我们一定要先有这样的一种意识，如果让我们设计，那么应该怎么设计参数和<span class="hljs-keyword">sql</span>占位符的匹配，这里其实就是按照两种方式类型和名称。<br></code></pre></td></tr></table></figure>
+<h2 id="一、一个参数"><a href="#一、一个参数" class="headerlink" title="一、一个参数"></a>一、一个参数</h2><p>对于这种一个参数的这种其实没有必要写parameterType，而且还有就是多个参数的时候也没有必要写parameterType，也就是说，其实该参数的存在是不是特别必要的。其中@Param和parameterType 二者存其一即可。看名字就能知道ParameterType是按照类型进行匹配，而@Param是按照名字进行匹配，因此可以联想下，多个参数的时候按名字匹配即可，对于按照类型就不能匹配了。如下是该参数标识的类型对应的别名</p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs vbnet">别名	                        映射的类型<br>_byte	                       <span class="hljs-type">byte</span><br>_long	                       <span class="hljs-type">long</span><br>_short	                       <span class="hljs-type">short</span><br>_int	                       int<br>_integer                       int<br>_double	                       <span class="hljs-type">double</span><br>_float	                       float<br>_boolean                       <span class="hljs-type">boolean</span><br><span class="hljs-type">string</span>	                       <span class="hljs-type">String</span><br><span class="hljs-type">byte</span>	                       <span class="hljs-type">Byte</span><br><span class="hljs-type">long</span>	                       <span class="hljs-type">Long</span><br><span class="hljs-type">short</span>	                       <span class="hljs-type">Short</span><br>int	                          <span class="hljs-type">Integer</span><br><span class="hljs-type">integer</span>	                       <span class="hljs-type">Integer</span><br><span class="hljs-type">double</span>	                       <span class="hljs-type">Double</span><br>float	                       Float<br><span class="hljs-type">boolean</span>	                       <span class="hljs-type">Boolean</span><br><span class="hljs-type">date</span>	                       <span class="hljs-type">Date</span><br><span class="hljs-type">decimal</span>	                       BigDecimal<br>bigdecimal	                     BigDecimal<br><span class="hljs-type">object</span>	                       <span class="hljs-type">Object</span><br>map	                          Map        <br>hashmap	                       HashMap<br>list	                       List<br>arraylist	                    ArrayList<br>collection	                    Collection<br><span class="hljs-keyword">iterator</span>                       <span class="hljs-keyword">Iterator</span><br></code></pre></td></tr></table></figure>
+<h3 id="1-基本类型"><a href="#1-基本类型" class="headerlink" title="1.基本类型"></a>1.基本类型</h3><h4 id="1-只含parameterType"><a href="#1-只含parameterType" class="headerlink" title="1.只含parameterType"></a>1.只含parameterType</h4><p>则只按照类型匹配，而不会考虑名字的匹配</p>
+<p>SOACoupon parameterTypeOneParam(Integer id);</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs axapta">&lt;<span class="hljs-keyword">select</span> id=<span class="hljs-string">&quot;parameterTypeOneParam&quot;</span> parameterType=<span class="hljs-string">&quot;int&quot;</span> resultType=<span class="hljs-string">&quot;org.mallcai.common.model.SOACoupon&quot;</span>&gt;<br>    <span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> tbl_coupon <span class="hljs-keyword">where</span> id = <span class="hljs-meta">#&#123;3333333&#125;</span><br>&lt;/<span class="hljs-keyword">select</span>&gt;<br></code></pre></td></tr></table></figure>
+<h4 id="2-只含有-Param"><a href="#2-只含有-Param" class="headerlink" title="2.只含有@Param"></a>2.只含有@Param</h4><p>这种就会只按照名字匹配，而不是按照类型匹配了，如果名字不同，则会异常</p>
+<p>SOACoupon parameterTypeOneParam(@Param(“idd”) Integer id);</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs axapta">&lt;<span class="hljs-keyword">select</span> id=<span class="hljs-string">&quot;parameterTypeOneParam&quot;</span> resultType=<span class="hljs-string">&quot;org.mallcai.common.model.SOACoupon&quot;</span>&gt;<br>	<span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> tbl_coupon <span class="hljs-keyword">where</span> id = <span class="hljs-meta">#&#123;idd&#125;</span><br>&lt;/<span class="hljs-keyword">select</span>&gt;<br></code></pre></td></tr></table></figure>
+<p>3.都不包含<br>都不包含，则默认按照类型匹配，主要是占位符那里有个占位符，入参有一个参数，匹配一下即可</p>
+<p>SOACoupon parameterTypeOneParam(Integer id);</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs axapta">&lt;<span class="hljs-keyword">select</span> id=<span class="hljs-string">&quot;parameterTypeOneParam&quot;</span> resultType=<span class="hljs-string">&quot;org.mallcai.common.model.SOACoupon&quot;</span>&gt;<br>	<span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> tbl_coupon <span class="hljs-keyword">where</span> id = <span class="hljs-meta">#&#123;idddd&#125;</span><br>&lt;/<span class="hljs-keyword">select</span>&gt;<br></code></pre></td></tr></table></figure>
+<p>4.都包含<br>都包含，则按照名字匹配，这个时候其实parameterType已经没有什么作用了</p>
+<p>SOACoupon parameterTypeOneParam(@Param(“id”) Integer id);</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs axapta">&lt;<span class="hljs-keyword">select</span> id=<span class="hljs-string">&quot;parameterTypeOneParam&quot;</span> parameterType=<span class="hljs-string">&quot;int&quot;</span> resultType=<span class="hljs-string">&quot;org.mallcai.common.model.SOACoupon&quot;</span>&gt;<br>    <span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> tbl_coupon <span class="hljs-keyword">where</span> id = <span class="hljs-meta">#&#123;id&#125;</span><br>&lt;/<span class="hljs-keyword">select</span>&gt;<br></code></pre></td></tr></table></figure>
+<p>2.集合类型<br>对于集合类型的话，这里也是要考虑@Param和parameterType 这两个的区别的</p>
+<p>1.只含parameterType<br>只包含parameterType，则当前就是表示只用这个的类型，则在xml中进行循环的时候，要按照类型来识别了</p>
+<p>SOACoupon parameterTypeOne1(List<Integer> ids);<br>如下collection中必须用list才行，因为这里已经是按照类型来进行识别了</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;parameterTypeOne1&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;list&quot;</span>  <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;org.mallcai.common.model.SOACoupon&quot;</span>&gt;</span><br>select * from tbl_coupon where id in<br><span class="hljs-tag">&lt;<span class="hljs-name">foreach</span> <span class="hljs-attr">collection</span>=<span class="hljs-string">&quot;list&quot;</span> <span class="hljs-attr">separator</span>=<span class="hljs-string">&quot;,&quot;</span> <span class="hljs-attr">open</span>=<span class="hljs-string">&quot;(&quot;</span> <span class="hljs-attr">close</span>=<span class="hljs-string">&quot;)&quot;</span> <span class="hljs-attr">item</span>=<span class="hljs-string">&quot;item&quot;</span>&gt;</span><br>	#&#123;item&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">foreach</span>&gt;</span><br>limit 1<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>2.只含@Param<br>则表示当前是要用名字来进行识别，则就没有必要写parameterType了，也就是两者都存在的时候，其中一个parameterType是会失效的</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs xml">SOACoupon parameterTypeOne1(@Param(&quot;idList&quot;) List<span class="hljs-tag">&lt;<span class="hljs-name">Integer</span>&gt;</span> ids);<br><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;parameterTypeOne1&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;org.mallcai.common.model.SOACoupon&quot;</span>&gt;</span><br>select * from tbl_coupon where id in<br><span class="hljs-tag">&lt;<span class="hljs-name">foreach</span> <span class="hljs-attr">collection</span>=<span class="hljs-string">&quot;idList&quot;</span> <span class="hljs-attr">separator</span>=<span class="hljs-string">&quot;,&quot;</span> <span class="hljs-attr">open</span>=<span class="hljs-string">&quot;(&quot;</span> <span class="hljs-attr">close</span>=<span class="hljs-string">&quot;)&quot;</span> <span class="hljs-attr">item</span>=<span class="hljs-string">&quot;item&quot;</span>&gt;</span><br>#&#123;item&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">foreach</span>&gt;</span><br>limit 1<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+<p>3.都不包含<br>则上报错误，主要是由于collection中是要写名字，因此必须至少有个名字或者类型才行</p>
+<p>4.都包含<br>都包含，则采用名字进行匹配，类型的话是有问题的</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs xml">SOACoupon parameterTypeOne1(@Param(&quot;ids&quot;) List<span class="hljs-tag">&lt;<span class="hljs-name">Integer</span>&gt;</span> ids);<br><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;parameterTypeOne1&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;list&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;org.mallcai.common.model.SOACoupon&quot;</span>&gt;</span><br>select * from tbl_coupon where id in<br><span class="hljs-tag">&lt;<span class="hljs-name">foreach</span> <span class="hljs-attr">collection</span>=<span class="hljs-string">&quot;ids&quot;</span> <span class="hljs-attr">separator</span>=<span class="hljs-string">&quot;,&quot;</span> <span class="hljs-attr">open</span>=<span class="hljs-string">&quot;(&quot;</span> <span class="hljs-attr">close</span>=<span class="hljs-string">&quot;)&quot;</span> <span class="hljs-attr">item</span>=<span class="hljs-string">&quot;item&quot;</span>&gt;</span><br>#&#123;item&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">foreach</span>&gt;</span><br>limit 1<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+<p>3.Map类型<br>1.只含parameterType<br>这种其实就是按照类型匹配，这个时候，对应的占位符采用的是只有key</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml">SOACoupon parameterTypeOne2(Map&lt;String, Object&gt; parasms);<br><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;parameterTypeOne2&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;map&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;org.mallcai.common.model.SOACoupon&quot;</span>&gt;</span><br>select * from tbl_coupon where id=#&#123;key&#125; and status=#&#123;status&#125; limit 1;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+<p>2.只含@Param<br>如果是注解，则是按照名字匹配，那么怎么匹配呢，这样就是需要xml中这么写了</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml">SOACoupon parameterTypeOne2(@Param(&quot;map&quot;) Map&lt;String, Object&gt; parasms);<br><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;parameterTypeOne2&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;org.mallcai.common.model.SOACoupon&quot;</span>&gt;</span><br>select * from tbl_coupon where id=#&#123;map.key&#125; and status=#&#123;map.status&#125; limit 1;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>3.都不包含<br>对于这种都不包含的，则上报异常</p>
+<pre><code class="hljs">&lt;select id=&quot;parameterTypeOne2&quot; resultType=&quot;org.mallcai.common.model.SOACoupon&quot;&gt;
+    select * from tbl_coupon where id=#&#123;key&#125; and status=#&#123;status&#125; limit 1;
+&lt;/select&gt;
+</code></pre>
+<p>4.都包含</p>
+<p>都包含，则按照名字进行匹配，也就是说，一旦出现名字，则就只能按照名字进行匹配</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml">SOACoupon parameterTypeOne2(@Param(&quot;maps&quot;) Map&lt;String, Object&gt; parasms);<br><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;parameterTypeOne2&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;map&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;org.mallcai.common.model.SOACoupon&quot;</span>&gt;</span><br>select * from tbl_coupon where id=#&#123;maps.key&#125; and status=#&#123;maps.status&#125; limit 1;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+<p>4.实体类型<br>1.只含parameterType<br>只包含parameterType，则跟上面map是一样的，就是按照key进行匹配</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml">SOACoupon parameterTypeOne3(SOACoupon coupon);<br><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;parameterTypeOne3&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;SOACoupon&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;org.mallcai.common.model.SOACoupon&quot;</span>&gt;</span><br>select * from tbl_coupon where id=#&#123;id&#125;;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+<p>2.只含@Param<br>只包含@Param，则跟上面的map是一样的，也是要通过名字进行访问才行</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml">SOACoupon parameterTypeOne3(@Param(&quot;coup&quot;)SOACoupon coupon);<br><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;parameterTypeOne3&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;org.mallcai.common.model.SOACoupon&quot;</span>&gt;</span><br>select * from tbl_coupon where id=#&#123;coup.id&#125;;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+<p>3.都不包含<br>都不包含，则采用类型进行识别</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml">SOACoupon parameterTypeOne3(SOACoupon coupon);<br><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;parameterTypeOne3&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;org.mallcai.common.model.SOACoupon&quot;</span>&gt;</span><br>select * from tbl_coupon where id=#&#123;coup.id&#125;;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+<p>4.都包含<br>都包含，则默认按照名字进行匹配</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml">SOACoupon parameterTypeOne3(@Param(&quot;coup&quot;) SOACoupon coupon);<br><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;parameterTypeOne3&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;SOACoupon&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;org.mallcai.common.model.SOACoupon&quot;</span>&gt;</span><br>select * from tbl_coupon where id=#&#123;coup.id&#125;;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>二、多个参数<br>对于多参数的，则就无法直接通过参数类型来识别了，而是必须要通过@Param来进行识别<br>SOACoupon parameterTypeMulti1(@Param(“id”)Integer id, @Param(“couponName”)String couponName);</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;parameterTypeMulti1&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;org.mallcai.common.model.SOACoupon&quot;</span>&gt;</span><br>select * from tbl_coupon where id=#&#123;id&#125; and coupon_name = #&#123;couponName&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<pre><code class="hljs">&lt;select id=&quot;parameterTypeMulti1&quot; resultType=&quot;org.mallcai.common.model.SOACoupon&quot;&gt;
+    select * from tbl_coupon where id=#&#123;id&#125; and coupon_name = #&#123;couponName&#125;
+&lt;/select&gt;
+</code></pre>
+<p>总结 ： 有@Param(“别名”)那么就是按照名称匹配<br>占位符内写名称<br>没有@Param 就按照类型匹配</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%A6%E4%B9%A0-%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/" class="category-chain-item">/学习/后端开发笔记/个人笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%88%B7%E9%A2%98/">#刷题</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>parameterType和@Param的区别</div>
+      <div>http://example.com/2022/09/03/parameterType和@Param的区别/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Tao Chen</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年9月3日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/09/06/%E7%89%9B%E5%AE%A2%E7%BD%91Java%E5%88%B7%E9%A2%98/" title="牛客网Java刷题">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">牛客网Java刷题</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/09/03/%E4%BA%8C%E5%8F%89%E6%A0%91/" title="二叉树">
+                        <span class="hidden-mobile">二叉树</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

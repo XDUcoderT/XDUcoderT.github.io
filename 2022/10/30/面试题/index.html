@@ -1,0 +1,1622 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Tao Chen">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="面试题JavaSE1. Java语言有哪些特点？ 简单易学，有丰富的类库 面向对象 Java最重要的特性，让程序耦合度更低，内聚性更高 平台无关性，JVM 可靠安全 支持多线程  2.面向对象和面向过程的区别 面向过程是先分析解决问题的步骤，然后用函数把这些步骤实现，使用时再一步一步调用即可 面向对象是构成问题的事务分解成各个对象，用于描述某个事务再解决整个问题中发生的行为，具有封装继承多态的特点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试题">
+<meta property="og:url" content="http://example.com/2022/10/30/%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="面试题JavaSE1. Java语言有哪些特点？ 简单易学，有丰富的类库 面向对象 Java最重要的特性，让程序耦合度更低，内聚性更高 平台无关性，JVM 可靠安全 支持多线程  2.面向对象和面向过程的区别 面向过程是先分析解决问题的步骤，然后用函数把这些步骤实现，使用时再一步一步调用即可 面向对象是构成问题的事务分解成各个对象，用于描述某个事务再解决整个问题中发生的行为，具有封装继承多态的特点">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://camo.githubusercontent.com/639ec442b39898de071c3e4fd098215fb48f11e9/68747470733a2f2f6d792d626c6f672d746f2d7573652e6f73732d636e2d6265696a696e672e616c6979756e63732e636f6d2f323031392d362f494f2d2545362539332538442545342542442539432545362539362542392545352542432538462545352538382538362545372542312542422e706e67">
+<meta property="og:image" content="c:/Users/TC/AppData/Roaming/Typora/typora-user-images/image-20221101160630942.png">
+<meta property="og:image" content="c:/Users/TC/AppData/Roaming/Typora/typora-user-images/image-20221101161040087.png">
+<meta property="og:image" content="https://cdn.xiaolincoding.com/gh/xiaolincoder/mysql/%E7%B4%A2%E5%BC%95/btree.drawio.png">
+<meta property="og:image" content="https://cdn.xiaolincoding.com/gh/xiaolincoder/mysql/%E7%B4%A2%E5%BC%95/%E7%B4%A2%E5%BC%95%E6%80%BB%E7%BB%93.drawio.png">
+<meta property="og:image" content="c:/Users/TC/AppData/Roaming/Typora/typora-user-images/image-20221108153319849.png">
+<meta property="og:image" content="c:/Users/TC/AppData/Roaming/Typora/typora-user-images/image-20221104205304032.png">
+<meta property="article:published_time" content="2022-10-30T08:57:08.275Z">
+<meta property="article:modified_time" content="2022-11-12T08:05:31.607Z">
+<meta property="article:author" content="Tao Chen">
+<meta property="article:tag" content="八股废柴">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://camo.githubusercontent.com/639ec442b39898de071c3e4fd098215fb48f11e9/68747470733a2f2f6d792d626c6f672d746f2d7573652e6f73732d636e2d6265696a696e672e616c6979756e63732e636f6d2f323031392d362f494f2d2545362539332538442545342542442539432545362539362542392545352542432538462545352538382538362545372542312542422e706e67">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>面试题 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>晨の私密花园</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于我
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg/1.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="面试题"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-10-30 16:57" pubdate>
+          2022年10月30日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          28k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          233 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">面试题</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h1><h2 id="JavaSE"><a href="#JavaSE" class="headerlink" title="JavaSE"></a>JavaSE</h2><h3 id="1-Java语言有哪些特点？"><a href="#1-Java语言有哪些特点？" class="headerlink" title="1. Java语言有哪些特点？"></a>1. Java语言有哪些特点？</h3><ul>
+<li>简单易学，有丰富的类库</li>
+<li>面向对象 Java最重要的特性，让程序耦合度更低，内聚性更高</li>
+<li>平台无关性，JVM</li>
+<li>可靠安全</li>
+<li>支持多线程</li>
+</ul>
+<h3 id="2-面向对象和面向过程的区别"><a href="#2-面向对象和面向过程的区别" class="headerlink" title="2.面向对象和面向过程的区别"></a>2.面向对象和面向过程的区别</h3><ul>
+<li>面向过程是先分析解决问题的步骤，然后用函数把这些步骤实现，使用时再一步一步调用即可</li>
+<li>面向对象是构成问题的事务分解成各个对象，用于描述某个事务再解决整个问题中发生的行为，具有<strong>封装继承多态</strong>的特点，所以<strong>易维护，易复用，易拓展。</strong></li>
+</ul>
+<h3 id="3-boolean类型"><a href="#3-boolean类型" class="headerlink" title="3. boolean类型"></a>3. boolean类型</h3><p>单个boolean值编译之后都是用Java虚拟机中的int类型来代替。</p>
+<p>boolean数组使用Java虚拟机的byte数组，每个boolean元素展一个字节</p>
+<p>补充：单个boolean使用int的原因是，对于当下32位处理器来说，一次处理数据是32位，</p>
+<p>具有高效存取的特点</p>
+<h3 id="4-instanceOf关键字的使用"><a href="#4-instanceOf关键字的使用" class="headerlink" title="4. instanceOf关键字的使用"></a>4. instanceOf关键字的使用</h3><p>instanceof用来测试一个对象是否是一个类的实例，返回boolean类型</p>
+<p>boolean result  &#x3D; obj instanceof Class</p>
+<p>其中obj是一个对象，Class表示一个类或者接口，当obj为Class的对象，或者其直接或者间接子类，或者是其接口的实现类，都返回true，其他的返回false</p>
+<p>如果obj为null 则返回false</p>
+<h3 id="5-Java自动拆箱装箱"><a href="#5-Java自动拆箱装箱" class="headerlink" title="5. Java自动拆箱装箱"></a>5. Java自动拆箱装箱</h3><p>装箱就是自动将基本数据类型转换为包装器类型（int–&gt;Integer）调用方法：Integer的 valueOf(int) 方法 </p>
+<p>拆箱就是自动将包装器类型转换为基本数据类型（Integer–&gt;int）。调用方法：Integer的 intValue方法</p>
+<p><strong>面试题1</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;<br>     <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>         <span class="hljs-type">Integer</span> <span class="hljs-variable">i1</span> <span class="hljs-operator">=</span> <span class="hljs-number">100</span>;<br>         <span class="hljs-type">Integer</span> <span class="hljs-variable">i2</span> <span class="hljs-operator">=</span> <span class="hljs-number">100</span>;<br>         <span class="hljs-type">Integer</span> <span class="hljs-variable">i3</span> <span class="hljs-operator">=</span> <span class="hljs-number">200</span>;<br>         <span class="hljs-type">Integer</span> <span class="hljs-variable">i4</span> <span class="hljs-operator">=</span> <span class="hljs-number">200</span>;<br><br>         System.out.println(i1==i2);<br>         System.out.println(i3==i4);<br>     &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>运行结果</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-literal">true</span><br><span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure>
+
+<p>在通过valueOf方法创建Integer对象的时候，如果数值在[-128,127]之间， 便返回指向IntegerCache.cache中已经存在的对象的引用；否则创建一个新的Integer对象。</p>
+<p>上面的代码中i1和i2的数值为100，因此会直接从cache中取已经存在的对象，所以i1和i2指向的是 同一个对象，而i3和i4则是分别指向不同的对象。</p>
+<p><strong>面试题2</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;<br>     <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>         <span class="hljs-type">Double</span> <span class="hljs-variable">i1</span> <span class="hljs-operator">=</span> <span class="hljs-number">100.0</span>;<br>         <span class="hljs-type">Double</span> <span class="hljs-variable">i2</span> <span class="hljs-operator">=</span> <span class="hljs-number">100.0</span>;<br>         <span class="hljs-type">Double</span> <span class="hljs-variable">i3</span> <span class="hljs-operator">=</span> <span class="hljs-number">200.0</span>;<br>         <span class="hljs-type">Double</span> <span class="hljs-variable">i4</span> <span class="hljs-operator">=</span> <span class="hljs-number">200.0</span>;<br><br>         System.out.println(i1==i2);<br>         System.out.println(i3==i4);<br>     &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>运行结果</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-literal">false</span><br><span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="6-重载和重写的区别"><a href="#6-重载和重写的区别" class="headerlink" title="6.重载和重写的区别"></a>6.重载和重写的区别</h3><ul>
+<li>重写：<ul>
+<li><strong>发生在子类和父类之间</strong></li>
+<li><strong>方法名，参数列表，返回类型</strong>(除过子类中方法的返回值是父类中方法返回值的子类时)都相同</li>
+<li><strong>访问修饰符的限制大于被重写方法的修饰符</strong></li>
+</ul>
+</li>
+<li>重载：<ul>
+<li>重载OverLoad是一个类多态性的一种表现 </li>
+<li>重载要求同名方法的<strong>参数列表不同</strong>(参数类型，参数个数甚至是参数顺序)</li>
+<li>重载的时候，<strong>返回值类型可以相同也可以不相同</strong>。无法以返回型作为重载函数的区分标准</li>
+</ul>
+</li>
+</ul>
+<h3 id="7-equals和-x3D-x3D-的区别"><a href="#7-equals和-x3D-x3D-的区别" class="headerlink" title="7.equals和&#x3D;&#x3D;的区别"></a>7.equals和&#x3D;&#x3D;的区别</h3><ul>
+<li>&#x3D;&#x3D;:<ul>
+<li>&#x3D;&#x3D;比较的是变量(栈)内存中存放的(堆)内存地址，用来判断两个对象的地址是否相同，即是否指向同一个对象。比较的是真正意义上的指针操作</li>
+<li>两边的操作数必须是同一类型的(可以是父子类之间)才能编译通过。</li>
+<li>比较的是地址，如果是具体的阿拉伯数字的比较，值相等则为true，如： int a&#x3D;10 与 long b&#x3D;10L 与 double c&#x3D;10.0都是相同的（为true），因为他们都指向地 址为10的堆。</li>
+</ul>
+</li>
+<li>equals：<ul>
+<li>equals用来比较的是两个对象的内容是否相等，由于所有的类都是继承自java.lang.Object类的，所以适用于所有对象，如果没有对该方法进行覆盖的话，调用的仍然是Object类中的方法，而Object 中的equals方法返回的却是&#x3D;&#x3D;的判断。</li>
+</ul>
+</li>
+</ul>
+<h3 id="8-HashCode的作用"><a href="#8-HashCode的作用" class="headerlink" title="8.HashCode的作用"></a>8.HashCode的作用</h3><p>哈希算法将集合分成若干个存储区域，每个对象可以计算出一个<strong>哈希码</strong>，可以<strong>将哈希码分组</strong>，每组分别对应某个存储区域，根据一个对象的哈希码就就可以确定对象应该存储的那个区域。</p>
+<h3 id="9-String-StringBuffer-StringBuiler的区别是什么"><a href="#9-String-StringBuffer-StringBuiler的区别是什么" class="headerlink" title="9.String StringBuffer StringBuiler的区别是什么"></a>9.String StringBuffer StringBuiler的区别是什么</h3><ul>
+<li><p>String是只读字符串，底层源码是一个final类型的字符数组，所引用的字符串不能被改变，一经定义，无法再增删改。每次对String的操作都会生成新的String对象</p>
+</li>
+<li><p>每次+操作 : 隐式的堆上new了一个跟原字符串相同的StringBuilder对象，再调用append方法拼接+后面的字符</p>
+</li>
+<li><p>StringBuffer和StringBuider他们两都继承了AbstractStringBuilder抽象类</p>
+<p>他们的底层都是可变的字符数组，所以在进行频繁的字符串操作时，建议使用StringBuffer和 StringBuilder来进行操作。 另外StringBuffer 对方法加了同步锁或者对调用的方法加了同步锁，所 以是线程安全的。StringBuilder 并没有对方法进行加同步锁，所以是非线程安全的。</p>
+</li>
+</ul>
+<h3 id="10-ArrayList和LinkedList的区别"><a href="#10-ArrayList和LinkedList的区别" class="headerlink" title="10. ArrayList和LinkedList的区别"></a>10. ArrayList和LinkedList的区别</h3><ul>
+<li><p>Array（数组）是基于索引(index)的数据结构，它使用索引在数组中搜索和读取数据是很快的。 Array获取数据的时间复杂度是O(1),但是要删除数据却是开销很大，因为这需要重排数组中的所有 数据, (因为删除数据以后, 需要把后面所有的数据前移)</p>
+<p>缺点: 数组初始化必须指定初始化的长度, 否则报错</p>
+</li>
+<li><p>List—是一个有序的集合，可以包含重复的元素，提供了按索引访问的方式，它继承Collection。 List有两个重要的实现类：ArrayList和LinkedList ArrayList: 可以看作是能够自动增长容量的数组 ArrayList的toArray方法返回一个数组 ArrayList的asList方法返回一个列表ArrayList底层的实现是Array, 数组扩容实现 </p>
+</li>
+<li><p>LinkList是一个双链表,在添加和删除元素时具有比ArrayList更好的性能.但在get与set方面弱于 ArrayList.当然,这些对比都是指数据量很大或者操作很频繁。</p>
+</li>
+</ul>
+<h3 id="11-HashMap和HashTable的区别"><a href="#11-HashMap和HashTable的区别" class="headerlink" title="11.HashMap和HashTable的区别"></a>11.HashMap和HashTable的区别</h3><ol>
+<li><p>两者父类不同</p>
+<p>HashMap是继承自AbstractMap类，而Hashtable是继承自Dictionary类。不过它们都实现了同时 实现了map、Cloneable（可复制）、Serializable（可序列化）这三个接口。</p>
+</li>
+<li><p>对外提供的接口不同</p>
+<p>HashTable比HashMap多提供了elements()和contains()两个方法，elments() 方法继承自 Hashtable的父类Dictionnary。elements() 方法用于返回此Hashtable中的value的枚举。</p>
+</li>
+<li><p>对null的支持不同</p>
+<ul>
+<li>HashTable:key和​value都不能为null</li>
+<li>HashMap:key可以为null，但是这样的key只能有一个，因为必须保证key的唯一性；可以有多个key对应的value为null</li>
+</ul>
+</li>
+<li><p>安全性不同</p>
+<ul>
+<li>HashMap是线程不安全的，在多线程并发的环境下，可能会发生死锁等问题</li>
+<li>HashTable是线程安全的。它的每个方法上都有synchronized关键字，因此可直接用于多线程中</li>
+<li>虽然HashMap是线程不安全的，但是它的效率远远高于Hashtable，这样设计是合理的，因为大部 分的使用场景都是单线程。</li>
+<li>当需要多线程操作的时候可以使用线程安全的ConcurrentHashMap。 ConcurrentHashMap虽然也是线程安全的，但是它的效率比Hashtable要高好多倍。因为 ConcurrentHashMap使用了分段锁，并不对整个数据进行锁定。</li>
+</ul>
+</li>
+<li><p>初始容量大小和每次扩充容量大小不同</p>
+</li>
+<li><p>计算hash值的方法不同</p>
+</li>
+</ol>
+<h3 id="12-Collection包结构与Collections的区别"><a href="#12-Collection包结构与Collections的区别" class="headerlink" title="12. Collection包结构与Collections的区别"></a>12. Collection包结构与Collections的区别</h3><ul>
+<li>Collection是集合类的上级接口，子接口有Set List ArrayList Vector Stack</li>
+<li>Collections是集合类的一个帮助类，它包含有各种有关集合操作的静态多态方法，用于实现对各种集合的搜索、排序、线程安全化等操作。</li>
+</ul>
+<p>​	</p>
+<h3 id="13-Java的四种引用"><a href="#13-Java的四种引用" class="headerlink" title="13.Java的四种引用"></a>13.Java的四种引用</h3><ul>
+<li><p>强引用：</p>
+<ul>
+<li><p>强引用是平常使用最多的引用，强引用在程序内存不足的时候(OOM)的时候也不会被回收，使用方式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-string">&quot;str&quot;</span>);<br>System.out.println(str);<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>软引用</p>
+<ul>
+<li><p>软引用在程序内存不足时，会被回收，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 注意：wrf这个引用也是强引用，它是指向SoftReference这个对象的，</span><br><span class="hljs-comment">// 这里的软引用指的是指向new String(&quot;str&quot;)的引用，也就是SoftReference类中T</span><br>SoftReference&lt;String&gt; wrf = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SoftReference</span>&lt;String&gt;(<span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-string">&quot;str&quot;</span>));<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>弱引用</p>
+<ul>
+<li><p>弱引用就是只要JVM垃圾回收器发现了它，就会将之回收，使用方式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">WeakReference&lt;String&gt; wrf = <span class="hljs-keyword">new</span> <span class="hljs-title class_">WeakReference</span>&lt;String&gt;(str);<br></code></pre></td></tr></table></figure>
+
+<p>可用场景： Java源码中的 java.util.WeakHashMap 中的 key 就是使用弱引用，我的理解就是， 一旦我不需要某个引用，JVM会自动帮我处理它，这样我就不需要做其它操作。</p>
+</li>
+</ul>
+</li>
+<li><p>虚引用</p>
+<ul>
+<li><p>虚引用的回收机制和弱引用差不多，但是它被回收之前，会被放入ReferenceQueue中。注意：其它引用是被JVM回收之后才被传入ReferenceQueue中的。由于这个机制，虚引用大多被用于引用销毁前的处理工作。</p>
+</li>
+<li><p>虚引用创建的时候，必须带有ReferenceQueue</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">PhantomReference&lt;String&gt; prf = <span class="hljs-keyword">new</span> <span class="hljs-title class_">PhantomReference</span>&lt;String&gt;(<span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-string">&quot;str&quot;</span>),<br><span class="hljs-keyword">new</span> <span class="hljs-title class_">ReferenceQueue</span>&lt;&gt;());<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="14-泛型的使用特点"><a href="#14-泛型的使用特点" class="headerlink" title="14. 泛型的使用特点"></a>14. 泛型的使用特点</h3><p>泛型意味着编写的代码可用被不同类型的对象所重用</p>
+<p>使用泛型的好处？</p>
+<p>以集合的举例，使用泛型的好处是我们不必因为添加元素类型的不同而定义不同类型的集合，如整型集合类，浮点型集合类，字符串集合类，只要把底层存储设置成Object即可。</p>
+<h3 id="15-Java创建对象有几种方式"><a href="#15-Java创建对象有几种方式" class="headerlink" title="15. Java创建对象有几种方式"></a>15. Java创建对象有几种方式</h3><p>Java中提供了以下四种创建对象的方式？</p>
+<ul>
+<li>new创建新对象</li>
+<li>通过反射机制</li>
+<li>采用clone机制</li>
+<li>通过序列化机制</li>
+</ul>
+<h3 id="16-有没有可能两个不相等的对象有相同的hashcode"><a href="#16-有没有可能两个不相等的对象有相同的hashcode" class="headerlink" title="16.有没有可能两个不相等的对象有相同的hashcode"></a>16.有没有可能两个不相等的对象有相同的hashcode</h3><p>有可能。在产生hash冲突时，两个不相等的对象就会有相同的hashcode值。当hash冲突产生时，一般有以下几种方式来处理：</p>
+<ul>
+<li>拉链法：</li>
+</ul>
+<p>每个哈希表节点都有一个next指针，多个哈希表节点可以用next指针构成一个单向链表，被分配到同一个索引上的多个节点可以用这个单项链表进行存储</p>
+<ul>
+<li>开放地址法：一旦发生了冲突，就去寻找下一个空的散列地址，只要散列表足够大，空的散列地址总能找到，并将记录存入。</li>
+<li>再哈希：又叫双哈希法，有多个不同的Hash函数，当发生冲突时，使用第二个，第三个….等哈希函数计算地址，直到无冲突</li>
+</ul>
+<h3 id="17-深拷贝和浅拷贝的区别是什么？"><a href="#17-深拷贝和浅拷贝的区别是什么？" class="headerlink" title="17. 深拷贝和浅拷贝的区别是什么？"></a>17. 深拷贝和浅拷贝的区别是什么？</h3><ul>
+<li>浅拷贝：被复制对象的所有变量都含有与原来的对象相同的值，而所有的对其他对象的引用仍然指向原来的对象，换言之，浅拷贝仅仅复制所考虑的对象，而不复制它所引用的对象。</li>
+<li>深拷贝：被复制对象的所有变量都含有与原来的对象相同的值。而那些引用其他对象的变量将指向被复制的新对象。而不再是原有的那些被引用的对象。换言之，深拷贝把要复制的对象所引用的对象都复制了一遍</li>
+</ul>
+<h3 id="18-final有哪些用法"><a href="#18-final有哪些用法" class="headerlink" title="18.final有哪些用法"></a>18.final有哪些用法</h3><p>记住五点</p>
+<ol>
+<li>被final修饰的<strong>类</strong>不可以被继承</li>
+<li>被final修饰的<strong>方法</strong>不可以被重写</li>
+<li>被final修饰的<strong>变量</strong>不可以被改变，如果修饰引用，表示引用不可以变，引用指向的内容可变</li>
+<li>被final修饰的<strong>方法</strong>，JVM会尝试将其<strong>内联</strong>，以<strong>提高运行效率</strong></li>
+<li>被final修饰的<strong>常量</strong>，在编译阶段会<strong>存入常量池</strong>中</li>
+</ol>
+<h3 id="19-static都有哪些用法"><a href="#19-static都有哪些用法" class="headerlink" title="19.static都有哪些用法"></a>19.static都有哪些用法</h3><ul>
+<li>静态变量</li>
+<li>静态方法</li>
+<li>静态代码块（多用于初始化操作）</li>
+<li>静态内部类</li>
+</ul>
+<h3 id="20-3-0-1-x3D-x3D-0-3返回值是什么"><a href="#20-3-0-1-x3D-x3D-0-3返回值是什么" class="headerlink" title="20.3*0.1 &#x3D;&#x3D; 0.3返回值是什么"></a>20.3*0.1 &#x3D;&#x3D; 0.3返回值是什么</h3><p>false，因为有些浮点数不能完全精确的表示出来</p>
+<h3 id="21-a-x3D-a-b与a-x3D-b有什么区别"><a href="#21-a-x3D-a-b与a-x3D-b有什么区别" class="headerlink" title="21.a&#x3D;a+b与a+&#x3D;b有什么区别"></a>21.a&#x3D;a+b与a+&#x3D;b有什么区别</h3><p>+&#x3D;操作符会隐式自动类型转换</p>
+<p>a&#x3D;a+b不会类型转换</p>
+<h3 id="22-try-catch-finally-try-里有return-finally还执行吗？"><a href="#22-try-catch-finally-try-里有return-finally还执行吗？" class="headerlink" title="22.try catch finally ,try 里有return finally还执行吗？"></a>22.try catch finally ,try 里有return finally还执行吗？</h3><p>执行     并且finally的执行早于 try里的return</p>
+<p>结论：</p>
+<ol>
+<li><strong>不管有没有出现异常，finally块中代码都会执行</strong></li>
+<li><strong>当try和catch中有return时，finally仍然会执行</strong></li>
+<li><strong>finally是在return后面的结构</strong></li>
+</ol>
+<p>Java异常处理层次图：</p>
+<p>java.lang.Object</p>
+<p>​	java.lang.Throwable</p>
+<p>​		java.lang.Exception</p>
+<p>​			java.lang,RuntimeException</p>
+<p>​		java.lang.Error</p>
+<p>​			java.lang.ThreadDeath</p>
+<ul>
+<li><p>Throwable</p>
+<ul>
+<li>Throwable类是Java中所有错误或者异常的超类</li>
+</ul>
+</li>
+<li><p>Error</p>
+<ul>
+<li><p>Error是程序无法处理的错误，表示运行引用程序中较严重的问题。大多数错误与代码编写者执行的操作无关，而表示代码运行时候JVM出现的问题。例如，Java虚拟机运行错误，比如OOM</p>
+</li>
+<li><p>这些错误是不可查的，因为它们在引用程序的控制和处理能力之外，而且绝大多数是程序运行时不允许出现的状况。</p>
+</li>
+</ul>
+</li>
+<li><p>Exception</p>
+<ul>
+<li>Exception是程序本身可以处理的异常</li>
+</ul>
+</li>
+</ul>
+<h3 id="23-OOM你遇到过哪些情况？"><a href="#23-OOM你遇到过哪些情况？" class="headerlink" title="23.OOM你遇到过哪些情况？"></a>23.OOM你遇到过哪些情况？</h3><ul>
+<li><p>OOM：</p>
+<ul>
+<li><p>OutOfMemoryError异常</p>
+<p>除了程序计数器外，虚拟机内存的其他几个运行时区域都有发生OutOfMemoryError异常的可能</p>
+<p>Java Heap溢出</p>
+<p>出现这种异常，一般手段是先通过内存映像分析工具(如Eclipse Memory Analyzer)对dump出来的 堆转存快照进行分析，重点是确认内存中的对象是否是必要的，先分清是因为内存泄漏(Memory Leak)还是内存溢出(Memory Overflow)。</p>
+<p>如果是内存泄漏，可进一步通过工具查看泄漏对象到GCRoots的引用链。于是就能找到泄漏对象是 通过怎样的路径与GC Roots相关联并导致垃圾收集器无法自动回收。 如果不存在泄漏，那就应该检查虚拟机的参数(-Xmx与-Xms)的设置是否适当。</p>
+</li>
+<li><p>虚拟机栈和本地方法栈溢出</p>
+<p>如果线程请求的栈升读大于虚拟机所允许的最大深度，将会抛出StackOverflowError异常</p>
+<p>如果虚拟机栈在扩展栈时无法申请到足够的内存空间，将抛出OutOfMemoryError异常</p>
+</li>
+<li><p>方法区溢出</p>
+<p>方法区用于存放Class的相关信息，如类名 访问修饰符 常量池 字段描述 方法描述等 也有可能是方法去中保存的class对象没有被及时回收掉或者class信息占用的内存超过了我们的配置</p>
+</li>
+</ul>
+</li>
+<li><p>SOF：</p>
+<ul>
+<li>当程序递归太深而发生栈溢出 </li>
+<li>栈溢出的原因：<ul>
+<li>递归调用</li>
+<li>大量循环或死循环</li>
+<li>全局变量是否过多</li>
+<li>数组 List Map数据过大</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="26-简述线程-程序-进程的基本概念。以及他们的关系是什么？"><a href="#26-简述线程-程序-进程的基本概念。以及他们的关系是什么？" class="headerlink" title="26 简述线程 程序 进程的基本概念。以及他们的关系是什么？"></a>26 简述线程 程序 进程的基本概念。以及他们的关系是什么？</h3><ul>
+<li><strong>线程</strong>与进程类似，但线程是一个比进程更小的执行单位。一个进程在其执行的过程中可以产生多个线程 与进程不同的是同类的多个线程<strong>共享一块内存空间和一组系统资源</strong> 所以系统在产生一个线程或者在各个线程之间作切换工作时，负担要比进程小很多，正因为如此，线程也被称为轻量级进程。</li>
+<li><strong>程序</strong>是含有指令和数据的文件 被存储在磁盘或其他的数据存储设备中 也就是说程序是静态的代码</li>
+<li><strong>进程</strong>是程序的一次执行过程 是系统运行的基本单位 因此进程是动态的 系统运行一个程序即是一个进程从创建运行到消亡的构成。简单来说 一个进程就是一个执行中的程序，它在计算机中一个又一个指令地执行着，同时，每个进程还占有某些系统资源如CPU时间、内存空间，文件，输入输出设备的使用权等等。换句话说，当程序在执行时，将会被操作系统载入内存中。</li>
+<li><strong>进程和线程</strong>最大的区别在于:进程基本上都是独立的，而线程则不一定，因为同一进程中的线程极有可能会相互影响</li>
+</ul>
+<h3 id="27-Exception和Error包结构"><a href="#27-Exception和Error包结构" class="headerlink" title="27.Exception和Error包结构"></a>27.Exception和Error包结构</h3><p>Java可抛出(Throwable)的结构分为三种类型：被检查的异常(CheckedException)，运行时异常 (RuntimeException)，错误(Error)。</p>
+<h3 id="28-Java-IO流结构"><a href="#28-Java-IO流结构" class="headerlink" title="28.Java IO流结构"></a>28.Java IO流结构</h3><p><img src="https://camo.githubusercontent.com/639ec442b39898de071c3e4fd098215fb48f11e9/68747470733a2f2f6d792d626c6f672d746f2d7573652e6f73732d636e2d6265696a696e672e616c6979756e63732e636f6d2f323031392d362f494f2d2545362539332538442545342542442539432545362539362542392545352542432538462545352538382538362545372542312542422e706e67" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="29-Java-反射的作用原理"><a href="#29-Java-反射的作用原理" class="headerlink" title="29.Java 反射的作用原理"></a>29.Java 反射的作用原理</h3><h4 id="1-定义："><a href="#1-定义：" class="headerlink" title="1.定义："></a>1.定义：</h4><p>反射机制是在运行时，对于任何一个类，都能够知道这个类的所有属性和方法；对于任意个对象，能够调用它的任何一个方法。在Java中，只要给定类的名字，就可以通过反射机制来获得类的所有信息。</p>
+<h4 id="2-哪里会用到反射机制？"><a href="#2-哪里会用到反射机制？" class="headerlink" title="2.哪里会用到反射机制？"></a>2.哪里会用到反射机制？</h4><p><strong>JDBC就是典型的反射</strong></p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Class</span>.</span></span><span class="hljs-keyword">for</span><span class="hljs-constructor">Name(&#x27;<span class="hljs-params">com</span>.<span class="hljs-params">mysql</span>.<span class="hljs-params">jdbc</span>.Driver.<span class="hljs-params">class</span>&#x27;)</span>; <span class="hljs-comment">//加载mysql的驱动类</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="3-反射的实现方式"><a href="#3-反射的实现方式" class="headerlink" title="3.反射的实现方式"></a>3.反射的实现方式</h4><p>第一步：获取Class对象，有四种方法</p>
+<p>1.Class.forName(“类的路径”)</p>
+<p>2.类名.class</p>
+<p>3.对象名.getClass</p>
+<p>4.基本类型的包装类，可以调用包装类的Type属性来获得该包装类的Class对象</p>
+<h4 id="4-实现Java反射的类"><a href="#4-实现Java反射的类" class="headerlink" title="4.实现Java反射的类"></a>4.实现Java反射的类</h4><ul>
+<li>Class：表示正在运行的Java应用程序中的类和接口 注意： 所有获取对象的信息都需要Class类 来实现。 </li>
+<li>Field：提供有关类和接口的属性信息，以及对它的动态访问权限。 </li>
+<li>Constructor： 提供关于类的单个构造方法的信息以及它的访问权限 </li>
+<li>Method：提供类或接口中某个方法的信息</li>
+</ul>
+<h4 id="5-反射机制的优缺点"><a href="#5-反射机制的优缺点" class="headerlink" title="5.反射机制的优缺点"></a>5.反射机制的优缺点</h4><ul>
+<li>优点：<ul>
+<li>能够在运行时动态获取类的实例，提高灵活性；</li>
+<li>与动态编译结合</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>使用反射性能较低，需要解析字节码，将内存中的对象进行解析</li>
+<li>相对不安全，破坏了封装性</li>
+</ul>
+</li>
+</ul>
+<h3 id="30-说说List，Set，Map三者的区别"><a href="#30-说说List，Set，Map三者的区别" class="headerlink" title="30.说说List，Set，Map三者的区别"></a>30.说说List，Set，Map三者的区别</h3><p>List(对付顺序的好帮手)： List接口存储一组不唯一（可以有多个元素引用相同的对象），有序 的对象 </p>
+<p>Set(注重独一无二的性质): 不允许重复的集合。不会有多个元素引用相同的对象。 </p>
+<p>Map(用Key来搜索的专家): 使用键值对存储。Map会维护与Key有关联的值。两个Key可以引 用相同的对象，但Key不能重复，典型的Key是String类型，但也可以是任何对象。</p>
+<h3 id="31-Object类有哪些常用方法？大致说一下每种方法的含义"><a href="#31-Object类有哪些常用方法？大致说一下每种方法的含义" class="headerlink" title="31.Object类有哪些常用方法？大致说一下每种方法的含义"></a>31.Object类有哪些常用方法？大致说一下每种方法的含义</h3><p><strong>clone方法</strong></p>
+<p>保护方法，实现对象的浅复制，只有实现了Cloneable接口才可以调用该方法，否则抛出CloneNotSupportedException异常，深拷贝也需要实现Cloneable，同时其成员变量为引用类型的也需要实现Cloneable，然后重写clone方法</p>
+<p><strong>finalize方法</strong></p>
+<p>该方法和垃圾收集器有关系，判断一个对象是否可以被回收的最后一步就是判断是否重写了此方法</p>
+<p><strong>equals方法</strong></p>
+<p>该方法使用频率非常高。一般equals和&#x3D;&#x3D;是不一样的。但在Object中两者是一样的。子类一般要重写这个方法</p>
+<p><strong>hashCode方法</strong></p>
+<p>该方法用于hash查找，重写了equals方法一般都要重写hashCode方法，这个方法在一些具有哈希功能的Collection中用到</p>
+<p>一般必须满足</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">obj1.equals(obj2) <span class="hljs-operator">=</span><span class="hljs-operator">=</span> true<br></code></pre></td></tr></table></figure>
+
+<p>可以推出obj1.hashCode() &#x3D;&#x3D; obj2.hashCode(),但是hashCode相等不一定就满足equals。不过为了提高效率，应该尽量使上面两个两个条件接近等价。</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">JDK</span> <span class="hljs-number">1</span>.<span class="hljs-number">6</span>、<span class="hljs-number">1</span>.<span class="hljs-number">7</span> 默认是返回随机数； <br><span class="hljs-attribute">JDK</span> <span class="hljs-number">1</span>.<span class="hljs-number">8</span> 默认是通过和当前线程有关的一个随机数 + 三个确定值，运用 Marsaglia’s xorshift scheme 随机数算法得到的一个随机数。<br></code></pre></td></tr></table></figure>
+
+<p><strong>wait 方法</strong></p>
+<p>配合 synchronized 使用，wait 方法就是使当前线程等待该对象的锁，当前线程必须是该对象的拥 有者，也就是具有该对象的锁。</p>
+<p>wait() 方法一直等待，直到获得锁或者被中断。wait(long timeout) 设定一个超时间隔，如果在规定时间内没有获得锁就返回。</p>
+<p>调用该方法后当前线程进入睡眠状态，直到以下事件发生。</p>
+<ol>
+<li>其他线程调用了该对象的 notify 方法；</li>
+<li>其他线程调用了该对象的 notifyAll 方法； </li>
+<li>其他线程调用了 interrupt 中断该线程；</li>
+<li>时间间隔到了。 此时该线程就可以被调度了，如果是被中断的话就抛出一个 InterruptedException 异常。</li>
+</ol>
+<p><strong>notify 方法</strong> </p>
+<p>配合 synchronized 使用，该方法唤醒在该对象上等待队列中的某个线程（同步队列中的线程是给 抢占 CPU 的线程，等待队列中的线程指的是等待唤醒的线程）。</p>
+<p><strong>notifyAll方法</strong></p>
+<p>配合 synchronized 使用，该方法唤醒在该对象上等待队列中的所有线程</p>
+<h3 id="32-Java创建对象有几种方式？"><a href="#32-Java创建对象有几种方式？" class="headerlink" title="32.Java创建对象有几种方式？"></a>32.Java创建对象有几种方式？</h3><p>四种 </p>
+<ol>
+<li><p>使用new关键字</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>();<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>通过反射方式创建对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">User user=User.class.newInstance();<br>Object object=(Object)Class.forName(<span class="hljs-string">&quot;java.lang.Object&quot;</span>).newInstance()<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>通过clone方法</p>
+</li>
+<li><p>使用反序列化创建对象，<strong>调用ObjectInputStream类的readObject方法</strong></p>
+<p>我们反序列化一个对象，JVM 会给我们创建一个单独的对象。JVM 创建对象并不会调用任何构造函 数。一个对象实现了 Serializable 接口，就可以把对象写入到文件中，并通过读取文件来创建对 象。</p>
+</li>
+</ol>
+<h3 id="33-Map和HashTable的异同点"><a href="#33-Map和HashTable的异同点" class="headerlink" title="33.Map和HashTable的异同点"></a>33.Map和HashTable的异同点</h3><ul>
+<li><p>相同点</p>
+<ul>
+<li>都实现了cloneable serialble map三个接口</li>
+</ul>
+</li>
+<li><p>不同点</p>
+<ul>
+<li><p>HashMap继承的是AbstractMap并且AbStractMap也实现了Map接口 HashTable继承Dictionary</p>
+</li>
+<li><p>Hashtable中大部分public修饰普通方法都是synchronized字段修饰的，是线程安全的，HashTable是非线程安全的</p>
+</li>
+<li><p>HashTable的key和value都不能为null 否则会报空指针异常</p>
+<p>HashMap中的key和value都可以为null但是key为null只能有1个</p>
+</li>
+<li><p>Hashtable直接使用hash值 hash 值是 JDK 根据对象的地址或者字符串或者数字算出 来的 int 类型的数值。然后再使用除留余数法来获得最终的位置。用除法计算很浪费时间</p>
+<p>HashMap为了提高效率，将哈希表的大小固定为2的次方幂，可以用位运算来代替除法 大大提高了效率</p>
+</li>
+<li><p>默认情况下，初始容量不同，Hashtable 的初始长度是 11，之后每次扩充容量变为之前的 2n+1（n 为上一次的长度）而 HashMap 的初始长度为 16，之后每次扩充变为原来的两倍。</p>
+</li>
+<li><p>HashTable是线程安全的，推荐使用HashMap来代替HashTable，如果需要线程安全搞并发的话，推荐使用COncurrentHashMap来代替HashTable</p>
+<p>补充：</p>
+<p>锁的实现原理:</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_22343483/article/details/98510619">锁的实现原理</a></p>
+<p>红黑树的结构：</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/273829162">图解：什么是红黑树？ - 知乎 (zhihu.com)</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="34-谈谈你对hashmap的理解"><a href="#34-谈谈你对hashmap的理解" class="headerlink" title="34.谈谈你对hashmap的理解"></a>34.谈谈你对hashmap的理解</h3><p>HashMap的底层是通过数组加单向链表实现的，数组中的<strong>每一个元素都是一个链表结构</strong>，而链表中的每一个节点都是一个Entry对象，Entry对象用来存储真正的K-V，也就是键值对的值。</p>
+<h4 id="1-如何减少hash冲突"><a href="#1-如何减少hash冲突" class="headerlink" title="1.如何减少hash冲突"></a>1.如何减少hash冲突</h4><ol>
+<li>干扰函数的使用，通过干扰函数，将元素hash值进行高低位的异或，使得参与运算的hash值，同时具备了原hash值高位和低位的特征，增大了随机性</li>
+<li>散列数组需要2的倍数的长度，不仅是为了散列，也是为了提高计算hash值的效率</li>
+</ol>
+<h4 id="2-数组越大，碰撞越小-数组越小，碰撞越大-时间和空间如何取舍"><a href="#2-数组越大，碰撞越小-数组越小，碰撞越大-时间和空间如何取舍" class="headerlink" title="2.数组越大，碰撞越小 数组越小，碰撞越大 时间和空间如何取舍"></a>2.数组越大，碰撞越小 数组越小，碰撞越大 时间和空间如何取舍</h4><p>hashmap中<strong>数组的初始长度为16</strong>，需要在适当的时候对数组进行扩容，那么hashmap当中默认的<strong>扩容阈值为0.75</strong>，太小扩容太频繁 太大扩容成本太高</p>
+<h4 id="3-hashmap出现hash冲突-通过拉链法处理-但是链表长度太长效率低"><a href="#3-hashmap出现hash冲突-通过拉链法处理-但是链表长度太长效率低" class="headerlink" title="3.hashmap出现hash冲突 通过拉链法处理 但是链表长度太长效率低"></a>3.hashmap出现hash冲突 通过拉链法处理 但是链表长度太长效率低</h4><ul>
+<li>jdk8把过长的链表把过长的链表大于等于8个 或者元素个数达到64 优化为自平衡的红黑树结构，以此让定位元素的复杂度优化为O(logN)</li>
+<li>当链表长度为小于等于6的时候 红黑树会退化为链表</li>
+<li>之所以两个数不同 是考虑到如果hash碰撞次数在8附近徘徊，会一直发生链表和红黑树的转换</li>
+</ul>
+<h4 id="4-jdk1-8对hashmap的优化"><a href="#4-jdk1-8对hashmap的优化" class="headerlink" title="4.jdk1.8对hashmap的优化"></a>4.jdk1.8对hashmap的优化</h4><ol>
+<li>数组加链表变为数组加链表或者红黑树</li>
+<li>链表的插入方式从<strong>头插法变为尾插法</strong> <strong>可以解决jdk7当中数据丢失和数据覆盖的问题</strong></li>
+<li>扩容的时候，1.7需要对原数组中的元素进行重新hash定位在新数组当中的位置 1.8则是采用更简单的判断逻辑位置不变或索引加就容量太小</li>
+<li><strong>1.7先判断是否需要扩容 再插入</strong> <strong>1.8先插入再判断是否需要扩容</strong></li>
+</ol>
+<h4 id="5-HashMap中put方法和get方法"><a href="#5-HashMap中put方法和get方法" class="headerlink" title="5.HashMap中put方法和get方法"></a>5.HashMap中put方法和get方法</h4><p>在存储K-V键值对的时候，我们首先<strong>会调用一个hash方法</strong>，通过这个hash方法可以<strong>计算出key的Hash值</strong>，从而得到一个<strong>十进制的数字</strong>，<strong>用这个数字和数组的长度减一去取模就可以得到数组的下标</strong>，可以根据这个下标找到数组中存储的单向链表，然后把链表中的每一个key和插入的key进行一个<strong>equals的比较</strong>，如果是相等话我们就直接更新这个value值，如果都不相等话，就把新的value值put到链表中去</p>
+<h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><h3 id="1-Java中实现多线程有几种方法"><a href="#1-Java中实现多线程有几种方法" class="headerlink" title="1.Java中实现多线程有几种方法"></a>1.Java中实现多线程有几种方法</h3><ol>
+<li>继承Thread类</li>
+<li>实现Runnable接口&#x2F;实现Callable接口</li>
+<li>线程池</li>
+</ol>
+<p>​	<strong>补充：</strong></p>
+<ol>
+<li><p>采用实现Runnable、Callable接口的方式创建线程的优缺点</p>
+<ul>
+<li>优点：线程类只是实现了Runnable或者Callable接口，还可以继承其他类。这种方式下，多个线程可以共享一个target对象，所以非常适合多个相同线程来处理同一份资源的情况，从而可以将CPU、代码和数据分开，形成清晰的模型，较好的体现了面向对象的思想。</li>
+<li>缺点：比较复杂,如果要访问当前线程，则必须使用Thread.currentThread()方法</li>
+</ul>
+</li>
+<li><p>采用继承Thread类的方式创建线程的优缺点</p>
+<ul>
+<li>优点：编写简单，如果需要访问当前线程，则无需使用Thread.currentThread()方法，直接使用this即可获取当前线程</li>
+<li>缺点：因为线程类已经继承了Thread类，Java语言是单继承的，所以就不能再继承其他父类了。</li>
+</ul>
+</li>
+<li><p>this 和 Thread.currentThread 的区别</p>
+<p>this指代当前所在类的实例对象，current就是字面意思指代当前正在运行的线程</p>
+</li>
+</ol>
+<h3 id="2-如何停止一个正在运行的线程"><a href="#2-如何停止一个正在运行的线程" class="headerlink" title="2.如何停止一个正在运行的线程"></a>2.如何停止一个正在运行的线程</h3><ol>
+<li><p>使用退出标志，使线程正常退出，也就是当run方法完成后线程终止</p>
+</li>
+<li><p>使用stop方法强行终止</p>
+<p>缺点</p>
+<ul>
+<li>可能使得一些请理性的工作得不到完成</li>
+<li>对锁定的对象进行了解锁 导致数据得不到同步的处理</li>
+</ul>
+</li>
+<li><p>使用interrupt方法中断线程 </p>
+<ul>
+<li><p>在main主线程中将创建的线程interrupt，在创建的线程run方法中检验当前线程是否interrupted，如果是则抛出一个异常，从而终止进程。</p>
+</li>
+<li><p>当然也可以不采用抛出异常的方法而采用直接return的方法停止进程。</p>
+</li>
+<li><p>interrupt仅仅是给一个停止的标记而已，并不是直接终止当前线程</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="3-Synchronized的深入理解"><a href="#3-Synchronized的深入理解" class="headerlink" title="3.Synchronized的深入理解"></a>3.Synchronized的深入理解</h3><ol>
+<li>关键词synchonized取得的锁是对象锁，而不是把一段代码或方法(函数)当作锁，所以哪个线程先执行带synchronized关键字的方法，那个线程就持有该方法所属对象的锁Lock,这时其他线程就只能呈等待状态，前提是多个线程访问的是同一个对象。但如果多个线程访问多个对象，则JVM会创建多个锁。</li>
+<li>调用用关键字synchronized声明的方法一定是排队运行的，另外需要牢牢记住”共享”这两个字，只有共享资源的读写访问才需要同步化，如果不是共享资源，那么根本就没有同步的必要。</li>
+<li>一旦一个线程获得了一个对象的Lock锁，那么在这个锁被释放之前 其他线程都不能访问这个对象的synchronized方法，但是可以随意调用非synchronized方法</li>
+<li>synchronized具有锁重入的功能，也就是在使用synchronized方法时，当一个线程得到一个对象锁后，再次请求此对象锁时是可以再次得到该对象的锁的。这也证明在一个synchronized方法&#x2F;块的内部调用本类的其他synchronized方法&#x2F;块时，是永远可以得到锁的。</li>
+<li>当一个线程执行的代码出现异常时，其所持有的锁会自动释放。</li>
+<li>同步不具有继承性。</li>
+<li>同步代码块<ul>
+<li>当两个并发线程访问同一个对象object中的synchronized(this)同步代码块时，一段时间内只能有一个线程被执行，另一个线程必须等待当前线程执行完这个代码块以后才能执行该代码块。</li>
+<li>当一个线程访问object的一个synchronized同步代码块时，另一个线程仍然可以访问该object对象的非synchronized(this)同步代码块</li>
+<li>在使用同步synchronized(this)代码块时需要注意的是，当一个线程访问object的一个sunchronized(this)同步代码块时，其他线程对同一个object中所有其他synchronized(this)同步代码块的访问将被阻塞，这说明synchronized使用的”对象监视器”是一个。</li>
+<li>和synchronized方法一样。synchronized(this)代码块也是锁定当前对象的。</li>
+</ul>
+</li>
+</ol>
+<h3 id="4-volatile关键字的作用"><a href="#4-volatile关键字的作用" class="headerlink" title="4.volatile关键字的作用"></a>4.volatile关键字的作用</h3><p>一旦一个共享变量(类的成员变量、类的静态成员变量)被volatile修饰之后，那么就具备了两层语义：</p>
+<ul>
+<li><p>保证了不同线程对这个变量进行操作时的<strong>可见性</strong>，即一个线程修改了某个变量的值，这新值对其他线程来说是立即可见的</p>
+</li>
+<li><p>volatile本质是在告诉jvm当前变量在寄存器(工作内存)中的值是不确定的，需要<strong>从主存中读取</strong>；<strong>synchronized</strong>则是<strong>锁定当前变量，只有当前线程可以访问该变量</strong>、方法和类级别的</p>
+</li>
+<li><p>volatile仅能实现变量的修改可见性，并不能保证其原子性；synchronized则可以保5证变量的修改性和原子性</p>
+</li>
+<li><p>volatile不会造成线程的阻塞 synchronized可能会造成现成的阻塞</p>
+</li>
+<li><p>volatile标记的变量不会被编译器优化；synchronized标记的变量可以被编译器优化</p>
+</li>
+</ul>
+<h3 id="5-notify和notifyAll有什么区别"><a href="#5-notify和notifyAll有什么区别" class="headerlink" title="5.notify和notifyAll有什么区别"></a>5.notify和notifyAll有什么区别</h3><p><strong>notify可能导致死锁，而notifyAll则不会</strong></p>
+<p>任何时候只有一个线程可以得到锁，也就是说只有一个线程可以运行synchronized中的代码</p>
+<p>使用notifyAll可以唤醒所有处于wait状态的线程，使其重新进入锁的争夺队列中，而notify只能唤醒一个</p>
+<p>wait()应配合<strong>while循环</strong>使用，<strong>不应使用if</strong>，<strong>务必在wait()调用前后都检查条件</strong>，自己继续wait()直至条件满足再往下执行</p>
+<p>notify() 是对notifyAll()的一个优化，但它有很精确的应用场景，并且要求正确使用。不然可能导致 死锁。正确的场景应该是 WaitSet中等待的是相同的条件，唤醒任一个都能正确处理接下来的事 项，如果唤醒的线程无法正确处理，务必确保继续notify()下一个线程，并且自身需要重新回到 WaitSet中.</p>
+<h3 id="6-sleep和wait有什么区别"><a href="#6-sleep和wait有什么区别" class="headerlink" title="6.sleep和wait有什么区别"></a>6.sleep和wait有什么区别</h3><ul>
+<li><p>对于sleep()方法，我们首先要知道该方法是属于Thread类中的。而wait()方法，则是属于Object类中的。</p>
+</li>
+<li><p>sleep()方法导致了程序暂停执行指定的时间，让出cpu给其他线程，但是他的<strong>监控状态依然保持着</strong>，当指定时间到了又会自动恢复运行状态。<strong>在调用sleep()方法的过程中，线程不会释放对象锁</strong></p>
+</li>
+<li><p>当调用wait()方法的时候，线程会<strong>放弃对象锁</strong>，进入等待此对象的等待锁定持，只有针对此对象<strong>调用notify方法</strong>后本线程才能<strong>进入对象锁定池准备</strong>，获取对象锁进入运行状态。</p>
+</li>
+</ul>
+<h3 id="7-Thread类中的start-和run-方法有什么区别？"><a href="#7-Thread类中的start-和run-方法有什么区别？" class="headerlink" title="7.Thread类中的start()和run()方法有什么区别？"></a>7.Thread类中的start()和run()方法有什么区别？</h3><ul>
+<li><p>start()方法被用来启动新创建的线程，而且start()内部调用了run()方法。</p>
+</li>
+<li><p>直接调用run()方法的时候，只会在原来的线程中调用，没有新的线程启动，start()方法才会启动新线程</p>
+</li>
+</ul>
+<h3 id="8-为什么wait，notify-notifyAll这些方法不在thread类里面"><a href="#8-为什么wait，notify-notifyAll这些方法不在thread类里面" class="headerlink" title="8.为什么wait，notify,notifyAll这些方法不在thread类里面?"></a>8.为什么wait，notify,notifyAll这些方法不在thread类里面?</h3><p>Java提供的锁是对象级的而不是线程级的，每个对象都要有锁。由于wait notify notifyAll都是锁级别的操作，所以把他们定义在Object类中 因为锁属于对象</p>
+<h3 id="9-为什么wait和notify方法要在同步块中调用？"><a href="#9-为什么wait和notify方法要在同步块中调用？" class="headerlink" title="9.为什么wait和notify方法要在同步块中调用？"></a>9.为什么wait和notify方法要在同步块中调用？</h3><ul>
+<li>只有调用线程拥有某个对象的独占锁时，才能调用该对象的wait(),notify()和notifyAll()方法。否则会抛出异常。</li>
+<li>还有一个原因是为了避免wait和notify之间产生竞态条件</li>
+</ul>
+<h3 id="10-Java中interrupted和isInterrupted方法的区别"><a href="#10-Java中interrupted和isInterrupted方法的区别" class="headerlink" title="10.Java中interrupted和isInterrupted方法的区别"></a>10.Java中interrupted和isInterrupted方法的区别</h3><ul>
+<li>最主要的区别是interrupted会将状态清除而后者不会。</li>
+</ul>
+<h3 id="11-Java中的synchronized和ReentrantLock有何不同？"><a href="#11-Java中的synchronized和ReentrantLock有何不同？" class="headerlink" title="11 Java中的synchronized和ReentrantLock有何不同？"></a>11 Java中的synchronized和ReentrantLock有何不同？</h3><h3 id="12-有三个线程T1，T2，T3，如何保证顺序执行？"><a href="#12-有三个线程T1，T2，T3，如何保证顺序执行？" class="headerlink" title="12.有三个线程T1，T2，T3，如何保证顺序执行？"></a>12.有三个线程T1，T2，T3，如何保证顺序执行？</h3><p>用线程类中的join方法在一个线程中去调用另一个线程。</p>
+<h3 id="13-SynchronizedMap和ConcurrentHashMap有什么区别"><a href="#13-SynchronizedMap和ConcurrentHashMap有什么区别" class="headerlink" title="13.SynchronizedMap和ConcurrentHashMap有什么区别"></a>13.SynchronizedMap和ConcurrentHashMap有什么区别</h3><p>SynchronizedMap()和Hashtable一样，实际上在调用map的所有方法时，<strong>都对整个map进行同步</strong>。而ConcurrentHashMap的实现却更加精细，<strong>它对map中的所有桶加了锁</strong>。<strong>所以只要有一个线程访问map，其他线程就无法进入map</strong>，<strong>而如果一个线程在访问ConcurrentHashMap某个桶时，其他线程仍然可以对map进行操作。</strong></p>
+<p>所以，ConcurrentHashMap在性能以及安全性方面，明显比Collections.synchronizedMap()更加有优势。同时，同步操作精确控制到桶，这样，即使在遍历map时，如果其他线程试图对map进行数据修改，也<strong>不会抛出ConcurrentModificationException</strong></p>
+<h3 id="14-什么是线程安全？"><a href="#14-什么是线程安全？" class="headerlink" title="14.什么是线程安全？"></a>14.什么是线程安全？</h3><p>如果代码在多线程下执行和单线程下执行永远都能获得一样的结果，那么代码就是线程安全的。</p>
+<h4 id="补充：线程安全的级别"><a href="#补充：线程安全的级别" class="headerlink" title="补充：线程安全的级别"></a>补充：线程安全的级别</h4><ol>
+<li>不可变<ul>
+<li>像String Integer Long 这些，都是final类型的类，任何一个线程都改变不了它们的值，要改变除非新创建一个，因此这些不可变对象不需要任何同步手段就可以直接在多线程环境下使用</li>
+</ul>
+</li>
+<li>绝对线程安全<ul>
+<li><strong>不管运行时环境如何，调用者都不需要额外的同步措施</strong>。要做到这一点通常要付出许多额外的代价，Java中标注自己是线程安全的类，实际上绝大多数都不是线程安全的，</li>
+</ul>
+</li>
+<li>相对线程安全<ul>
+<li>相对线程安全也就是我们通常意义上所说的线程安全，像vector这种，add、remove方法都是原子操作，不会被打断，但也仅限于此，如果有个线程在遍历某个Vector、有个线程同时在add这个Vector，99％的情况下都会出现ConcurrentModificationException，也就是fail-fast机制</li>
+</ul>
+</li>
+<li>线程非安全<ul>
+<li>ArrayList LinkedList HashMap都是线程非安全的类</li>
+</ul>
+</li>
+</ol>
+<h3 id="15-Java线程池中submit-和execute-方法有什么区别"><a href="#15-Java线程池中submit-和execute-方法有什么区别" class="headerlink" title="15.Java线程池中submit()和execute()方法有什么区别"></a>15.Java线程池中submit()和execute()方法有什么区别</h3><h3 id="16-如何避免死锁"><a href="#16-如何避免死锁" class="headerlink" title="16.如何避免死锁"></a>16.如何避免死锁</h3><p>指定获得锁的顺序，举例如下：</p>
+<ol>
+<li>比如某个线程只有获得A锁和B锁才能对某资源进行操作，在多线程条件下，如何避免死锁</li>
+<li>获得锁的顺序是一定的，比如规定，只有获得A锁的线程才有资格获得B锁，按顺序获取锁就可以避免死锁！！！</li>
+</ol>
+<h3 id="17-引用类型有哪些？有什么区别？"><a href="#17-引用类型有哪些？有什么区别？" class="headerlink" title="17.引用类型有哪些？有什么区别？"></a>17.引用类型有哪些？有什么区别？</h3><h2 id="Spring框架"><a href="#Spring框架" class="headerlink" title="Spring框架"></a>Spring框架</h2><h3 id="1-Spring的好处"><a href="#1-Spring的好处" class="headerlink" title="1.Spring的好处"></a>1.Spring的好处</h3><ul>
+<li><strong>轻量</strong>：Spring是轻量的，基本的版本大约2MB</li>
+<li><strong>控制反转</strong>，Spring通过控制反转实现了松散耦合，对象们给出它们的依赖，而不是创建或查找依赖的对象们</li>
+<li><strong>面向切面的编程</strong>:Spring支持面向切面编程，并且把应用业务逻辑和系统服务分开。</li>
+<li><strong>容器</strong>：Spring<strong>包含并管理</strong>应用中对象的<strong>生命周期</strong>和<strong>配置</strong></li>
+<li><strong>MVC框架</strong>:Spring的WEB框架是个精心设计的框架</li>
+<li><strong>事务管理</strong>：Spring 提供一个持续的事务管理接口，可以扩展到上至本地事务下至全局事务 （JTA）。</li>
+<li><strong>异常处理</strong>：Spring提供方便的API把具体技术相关的异常转化为一致的unchecked异常</li>
+</ul>
+<h3 id="2-Autowired和Resource关键字的区别"><a href="#2-Autowired和Resource关键字的区别" class="headerlink" title="2.Autowired和Resource关键字的区别"></a>2.Autowired和Resource关键字的区别</h3><ol>
+<li><p>共同点</p>
+<p>两者都可以写在字段和setter方法上。如果都写在字段上。那么就不需要再写setter方法</p>
+</li>
+<li><p>不同点</p>
+<ol>
+<li>Autowired注解是按照类型装配依赖对象，<strong>默认情况下它要求依赖对象必须存在</strong>，如果允许null值，可以设置它的required属性为false。如果我们想使用按照名称byName来装配，可以结合@Qualifier注解一起使用</li>
+<li>@Resource默认按照ByName自动注入。Resource有两个重要的属性：name和type，而spring将Resource注解的name属性解析为bean的名字，而type属性则解析为bean的类型。所以如果使用name属性，则使用byName的自动注入策略，而使用type属性则使用byType自动注入策略</li>
+<li>@Resource装配顺序：<ol>
+<li>如果<strong>同时制定了name和type</strong>，则从Spring上下文中找到唯一匹配的bean进行装配，找不到则抛出异常</li>
+<li>如果<strong>指定了name</strong>，则从上下文中查找名称(id)匹配的bean进行装配，找不到则抛出异常</li>
+<li>如果<strong>指定了type</strong>，则从上下文中找到类似匹配的唯一bean进行装配，找不到或是找到多个，都会抛出异常</li>
+<li><strong>如果既没有指定name，又没有指定type，则自动按照byName方式进行装配</strong>；<strong>如果没有匹配，则回退为一个原始类型进行匹配，如果匹配则自动装配</strong></li>
+<li>Resource的作用相当于@Autowired，只不过@Autowired按照byType自动注入</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="3-依赖注入的方式有几种？"><a href="#3-依赖注入的方式有几种？" class="headerlink" title="3.依赖注入的方式有几种？"></a>3.依赖注入的方式有几种？</h3><ol>
+<li><p>构造器注入</p>
+<p>将被依赖对象通过构造函数的参数注入给依赖对象，并在初始化对象的时候注入</p>
+<p>优点：对象初始化完成后便可获得可使用的对象</p>
+</li>
+</ol>
+<h3 id="4-说说你对SpringMVC的理解"><a href="#4-说说你对SpringMVC的理解" class="headerlink" title="4.说说你对SpringMVC的理解"></a>4.说说你对SpringMVC的理解</h3><p>什么是MVC模式</p>
+<p>MVC是一种设计模式</p>
+<p>MVC的原理图：</p>
+<p><img src="C:\Users\TC\AppData\Roaming\Typora\typora-user-images\image-20221101160630942.png" srcset="/img/loading.gif" lazyload alt="image-20221101160630942"></p>
+<ul>
+<li><p>M-model模型 </p>
+<p>完成业务逻辑，有javaBean构成，service + dao + entity</p>
+</li>
+<li><p>V-View视图 </p>
+<p>做界面的展示 jsp html</p>
+</li>
+<li><p>C Controller控制器</p>
+<p>接收请求-&gt;调用模型-&gt;根据结果派发页面</p>
+</li>
+</ul>
+<p><img src="C:\Users\TC\AppData\Roaming\Typora\typora-user-images\image-20221101161040087.png" srcset="/img/loading.gif" lazyload alt="image-20221101161040087"></p>
+<h3 id="5-SpringMVC常用的注解有哪些"><a href="#5-SpringMVC常用的注解有哪些" class="headerlink" title="5.SpringMVC常用的注解有哪些"></a>5.SpringMVC常用的注解有哪些</h3><p>@RequestMapping :用于处理了请求url映射的注解，可用于类或者方法上。用于类上，则表示类中的所有响应的方法都是以该地址作为父路径</p>
+<p>@RequestBody：注解实现接收http请求的json数据，将json转化为java对象</p>
+<p>@ResponseBody：注解实现将controller方法返回的json对象响应给客户</p>
+<h3 id="6-谈谈你对Spring的AOP的理解"><a href="#6-谈谈你对Spring的AOP的理解" class="headerlink" title="6. 谈谈你对Spring的AOP的理解"></a>6. 谈谈你对Spring的AOP的理解</h3><p>AOP能够将那些<strong>与业务无关</strong>，却<strong>为业务模块所共同调用的逻辑或责任封装起来</strong>，<strong>便于减少系统的重复代码</strong>，降低模块间的耦合度，并有利于未来的科拓展性和可维护性。</p>
+<p>SpringAOP是基于动态代理的，如果要代理的对象实现了某个接口，那么Spring AOP就会使用JDK动态代理去创建代理对象；而对于没有实现接口的对象，就无法使用JDK动态代理</p>
+<h3 id="7-什么是通知呢？有哪些类型呢"><a href="#7-什么是通知呢？有哪些类型呢" class="headerlink" title="7.什么是通知呢？有哪些类型呢"></a>7.什么是通知呢？有哪些类型呢</h3><p>通知是个在方法执行前或执行后要做的动作，实际上是程序执行时要通过SpringAOP框架触发的代码段</p>
+<p>Spring切面可以应用物种类型的通知：</p>
+<ul>
+<li>before：前置通知，在一个方法执行前被调用</li>
+<li>after：在方法执行之后调用的通知，无论方法执行是否成功</li>
+<li>after-returning: 仅当方法成功完成后执行的通知。</li>
+<li>after-throwing: 在方法抛出异常退出时执行的通知。</li>
+<li>around：在方法执行之前和之后调用的通知</li>
+</ul>
+<h3 id="8-说说你对Spring的IOC是怎么理解的？"><a href="#8-说说你对Spring的IOC是怎么理解的？" class="headerlink" title="8.说说你对Spring的IOC是怎么理解的？"></a>8.说说你对Spring的IOC是怎么理解的？</h3><ol>
+<li>IOC就是<strong>控制反转</strong>，是指创建对象的控制权的转移。以前创建对象的主动权和时机是由自己把控的，而现在这种权力转移到Spring容器中，并由容器根据配置文件去创建实例和管理各个实例之间的依赖关系。对象和对象之间松散耦合，也利于功能的复用。DI依赖注入和控制反转是同一个概念的不同角度的描述，即应用程序在运行时依赖IOC容器来动态注入对象所需要的外部资源、</li>
+<li>最直观的表达就是，IOC让对象的创建不用去new了，可以由spring自动生产，使用java的反射机制，根据配置文件在运行时动态的去创建对象以及管理对象，并调用对象的方法。</li>
+<li>Spring的IOC有三种注入方式：<strong>构造器注入</strong>、<strong>setter注入</strong>、<strong>根据注解注入</strong></li>
+</ol>
+<h3 id="9-SpringIOC原理"><a href="#9-SpringIOC原理" class="headerlink" title="9.SpringIOC原理"></a>9.SpringIOC原理</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>Spring通过一个配置文件描述Bean及Bean之间的依赖关系，利用Java语言的反射功能实例化Bean并建立Bean之间的依赖关系。</p>
+<h4 id="装配过程"><a href="#装配过程" class="headerlink" title="装配过程"></a>装配过程</h4><p>Spring启动时读取应用程序的Bean配置信息，并在Spring容器中生成一份相应的Bean配置注册表，然后根据这张注册表实例化Bean，装配好Bean之间的依赖关系，其中Bean缓存池为HashMap实现</p>
+<h4 id="BeanFactory基础框架设施"><a href="#BeanFactory基础框架设施" class="headerlink" title="BeanFactory基础框架设施"></a>BeanFactory基础框架设施</h4><p>BeanFactort是Spring框架的<strong>基础设施，面向Spring本身</strong>；ApplicationContext面向使用Spring框架的开发者</p>
+<h3 id="10-SpringBean-生命周期"><a href="#10-SpringBean-生命周期" class="headerlink" title="10.SpringBean 生命周期"></a>10.SpringBean 生命周期</h3><h4 id="实例化"><a href="#实例化" class="headerlink" title="实例化"></a>实例化</h4><ul>
+<li>实例化一个Bean 也就是我们常说的new</li>
+</ul>
+<h4 id="IOC依赖注入"><a href="#IOC依赖注入" class="headerlink" title="IOC依赖注入"></a>IOC依赖注入</h4><ul>
+<li>按照Spring上下文对实例化的Bean进行配置</li>
+</ul>
+<h4 id="setBeanName实现"><a href="#setBeanName实现" class="headerlink" title="setBeanName实现"></a>setBeanName实现</h4><ul>
+<li>如果这个Bean实现了<strong>BeanNameAware</strong>接口，会调用它实现的<strong>setBeanName(String)方法</strong> 此处传递的就是Spring配置文件中Bean的id值</li>
+</ul>
+<h4 id="setBeanFactory实现"><a href="#setBeanFactory实现" class="headerlink" title="setBeanFactory实现"></a>setBeanFactory实现</h4><ul>
+<li>如果这个Bean实现了BeanFactoryAware接口，会调用实现它的setBeanFactroy，setBeanFactory(BeanFactroy)传递的是Spring工厂自身(可以用这个方法来获取其它Bean)</li>
+</ul>
+<h4 id="setApplicationContext实现"><a href="#setApplicationContext实现" class="headerlink" title="setApplicationContext实现"></a>setApplicationContext实现</h4><ul>
+<li>如果这个Bean已经实现了ApplicationContextAware接口，会调用setApplicationContext(Application)方法，传入Spring上下文 同样这个方式实现步骤4的内容，但比4更好</li>
+</ul>
+<h4 id="PostProcessBeforeInitialization接口实现-初始化预处理"><a href="#PostProcessBeforeInitialization接口实现-初始化预处理" class="headerlink" title="PostProcessBeforeInitialization接口实现-初始化预处理"></a>PostProcessBeforeInitialization接口实现-初始化预处理</h4><ul>
+<li>如果这个Bean关联了BeanPostProcessor接口，将会调用postProcessBeforeInitialization(Object obj,String s)方法</li>
+</ul>
+<h4 id="init-method"><a href="#init-method" class="headerlink" title="init-method"></a>init-method</h4><ul>
+<li>如果Bean在Spring文件中配置了init-method属性会自动调用其配置的初始化方法</li>
+</ul>
+<h4 id="postProcessAfterInitialization"><a href="#postProcessAfterInitialization" class="headerlink" title="postProcessAfterInitialization"></a>postProcessAfterInitialization</h4><ul>
+<li>如果这个Bean关联了BeanProcessor接口，将会调用postProcessAfterInitialization(Object obj,String s)方法</li>
+</ul>
+<h4 id="Destory过期自动清理阶段"><a href="#Destory过期自动清理阶段" class="headerlink" title="Destory过期自动清理阶段"></a>Destory过期自动清理阶段</h4><ul>
+<li>当Bean不在需要时，会经过清理阶段，如果Bean实现了DisposableBean接口，会调用那个其实现的destory方法</li>
+</ul>
+<h4 id="destory-method自配置清理"><a href="#destory-method自配置清理" class="headerlink" title="destory-method自配置清理"></a>destory-method自配置清理</h4><ul>
+<li>最后，如果这个Bean的Spring配置中配置了destory-method属性,会调用其配置的销毁方法</li>
+</ul>
+<h2 id="MyBatis框架"><a href="#MyBatis框架" class="headerlink" title="MyBatis框架"></a>MyBatis框架</h2><h3 id="1-和-的区别是什么？"><a href="#1-和-的区别是什么？" class="headerlink" title="1.#{}和${}的区别是什么？"></a>1.#{}和${}的区别是什么？</h3><p><strong>#{}是预编译处理</strong>，${}是字符串替换</p>
+<p>Mybatis在处理#{}时，会将sql中的**#{}转为？<strong>调用</strong>PrepareStatement的set方法来赋值**</p>
+<p><strong>Mybatis在处理${}时，就是把${}替换成变量的值</strong></p>
+<p>使用#{}可以有效的防止sql注入，提高系统安全性</p>
+<h3 id="2-当实体类中的属性名和表中的字段名不一样，怎么办？"><a href="#2-当实体类中的属性名和表中的字段名不一样，怎么办？" class="headerlink" title="2.当实体类中的属性名和表中的字段名不一样，怎么办？"></a>2.当实体类中的属性名和表中的字段名不一样，怎么办？</h3><ol>
+<li><p>通过在查询的sql语句中定义字段名的别名，让字段名和实体类的属性名一致</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;select id=”selectorder” parametertype=”<span class="hljs-type">int</span>” resultetype=”me.gacl.domain.order”&gt;<br> 	select order_id id, order_no orderno ,order_price price form orders where order_id=#&#123;id&#125;;<br>&lt;/select&gt;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>通过来映射字段名和实体类属性名的一一对应的关系</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;select id=<span class="hljs-string">&quot;getOrder&quot;</span> parameterType=<span class="hljs-string">&quot;int&quot;</span> resultMap=<span class="hljs-string">&quot;orderresultmap&quot;</span>&gt;<br> select * from orders where order_id=#&#123;id&#125;<br> &lt;/select&gt;<br> &lt;resultMap type=”me.gacl.domain.order” id=”orderresultmap”&gt;<br> &lt;!–用id属性来映射主键字段–&gt;<br> &lt;id property=”id” column=”order_id”&gt;<br> &lt;!–用result属性来映射非主键字段，property为实体类属性名，column为数据表中的属性–&gt;<br> &lt;<span class="hljs-type">result</span> <span class="hljs-variable">property</span> <span class="hljs-operator">=</span> “orderno” column =”order_no”/&gt;<br> &lt;result property=”price” column=”order_price” /&gt;<br> &lt;/reslutMap&gt;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="Mysql篇"><a href="#Mysql篇" class="headerlink" title="Mysql篇"></a>Mysql篇</h2><h3 id="Mysql执行流程是怎么样的？"><a href="#Mysql执行流程是怎么样的？" class="headerlink" title="Mysql执行流程是怎么样的？"></a>Mysql执行流程是怎么样的？</h3><p>Mysql的架构分为两层：Server层和存储引擎层</p>
+<ul>
+<li>Server层负责建立连接、分析和执行sql<ul>
+<li>Mysql大多数的核心功能模块都在这里实现，主要包括<strong>连接器</strong>，<strong>查询缓存</strong>，<strong>解析器</strong>，<strong>预处理器</strong>，<strong>优化器</strong>，<strong>执行器</strong>等。另外所有的内置函数(如日期、时间、教学和加密函数等)和所有跨存储引擎的功能</li>
+</ul>
+</li>
+<li>存储引擎负责数据的存储和提取<ul>
+<li>支持InnoDB、MyISAM、Memory等剁排骨存储引擎，不同的存储引擎公用一个Server层。现在最常用的存储引擎是InnoDB，从MySQL5.5开始InnoDB成了默认存储引擎，InnoDB支持索引类型是B+树</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-连接器"><a href="#1-连接器" class="headerlink" title="1.连接器"></a>1.连接器</h4><p>连接的过程需要经过TCP三次握手，因为Mysql是基于TCP协议进行传输的。</p>
+<h5 id="如何查看Mysql服务被多少个客户端连接了？"><a href="#如何查看Mysql服务被多少个客户端连接了？" class="headerlink" title="如何查看Mysql服务被多少个客户端连接了？"></a>如何查看Mysql服务被多少个客户端连接了？</h5><p>使用show processlist命令进行查看</p>
+<h5 id="空闲连接会一直占用吗？"><a href="#空闲连接会一直占用吗？" class="headerlink" title="空闲连接会一直占用吗？"></a>空闲连接会一直占用吗？</h5><p>不是 mysql定义了空闲连接的最大空闲时长，默认是8小时</p>
+<h5 id="mysql的连接数有限制吗？"><a href="#mysql的连接数有限制吗？" class="headerlink" title="mysql的连接数有限制吗？"></a>mysql的连接数有限制吗？</h5><p>mysql服务支持的的最大连接数由max_connections参数控制</p>
+<h5 id="mysql的连接和http一样，有短链接和长连接的概念"><a href="#mysql的连接和http一样，有短链接和长连接的概念" class="headerlink" title="mysql的连接和http一样，有短链接和长连接的概念"></a>mysql的连接和http一样，有短链接和长连接的概念</h5><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs text">// 短连接<br>连接 mysql 服务（TCP 三次握手）<br>执行sql<br>断开 mysql 服务（TCP 四次挥手）<br><br>// 长连接<br>连接 mysql 服务（TCP 三次握手）<br>执行sql<br>执行sql<br>执行sql<br>....<br>断开 mysql 服务（TCP 四次挥手）<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>使用长连接的好处就是可以减少建立连接和断开连接的过程，所以一般是推荐使用长连接。</li>
+<li>但是，使用长连接后可能会占用内存增多，因为mysql在执行查询过程中使用内存管理连接对象，这些连接只有在连接断开时才会是释放，如果长连接累计很多，将导致mysql服务占用内存太大，有可能会被系统强制杀掉，这样会发生mysql服务异常重启的现象</li>
+</ul>
+<h5 id="怎样解决长连接占用内存的问题"><a href="#怎样解决长连接占用内存的问题" class="headerlink" title="怎样解决长连接占用内存的问题"></a>怎样解决长连接占用内存的问题</h5><ol>
+<li>定期断开长连接</li>
+<li>客户端主动重置链接</li>
+</ol>
+<h4 id="2-查询缓存"><a href="#2-查询缓存" class="headerlink" title="2.查询缓存"></a>2.查询缓存</h4><p>连接器的工作完成后，客户端就可以向mysql服务发发送sql语句了，mysql服务收到sql语句后，就会<strong>解析出sql的第一个字段</strong>，看看是什么类型的语句</p>
+<p>如果sql是查询语句 mysql就会先去查询缓存里查找缓存数据，看看之前有没有执行过这一条命令，这个缓存查询是以key-value的形式保存在内存中的，key为sql查询语句，value为sql语句查询的结果</p>
+<p>如果查询的语句命中查询缓存，那么就会直接返回value给客户端，如果查询的语句没有命中缓存，那么就要往下继续执行，等执行完后，查询的结果就会被存入查询缓存中</p>
+<p><strong>补充</strong></p>
+<p>查询缓存很鸡肋</p>
+<p>对于更新比较频繁的表 查询缓存的命中率很低 因为只要有一个表有更新操作，那么这个表的查询缓存就会被清空。如果刚缓存一个查询结果很大的数据，还没有被使用的时候，刚好这个表有更新操作，查询缓存就被清空了。所以Mysql 8.0直接删除掉查询缓存</p>
+<h4 id="3-解析sql"><a href="#3-解析sql" class="headerlink" title="3.解析sql"></a>3.解析sql</h4><p>在正式进行sql查询语句之前，mysql会先对sql语句做解析，这个工作交由<strong>解析器</strong>来完成</p>
+<h4 id="解析器"><a href="#解析器" class="headerlink" title="解析器"></a>解析器</h4><p>解析器会做如下两件事情。</p>
+<ol>
+<li>词法分析。mysql会根据输入的字符串识别出关键字，构建sql语法树，这样方便后面模块获取sql类型、表名、字段名、where条件等等</li>
+<li>语法分析，根据词法分析的结果，语法解析器会根据语法规则，判断输入的sql语句是否满足mysql语法</li>
+<li>如果我们输入的sql语句语法不对，就会在解析器这个阶段报错。</li>
+<li>但是表不存在或者字段不存在，并不是在解析器里做的</li>
+</ol>
+<h4 id="4-执行sql"><a href="#4-执行sql" class="headerlink" title="4.执行sql"></a>4.执行sql</h4><p>经过解析器后，接着就要进入执行sql查询语句的流程了 每条select查询语句流程主要分为下面三个阶段</p>
+<ul>
+<li>prepare阶段 预处理阶段</li>
+<li>optimize阶段 优化阶段</li>
+<li>execute阶段 执行阶段</li>
+</ul>
+<h4 id="预处理器"><a href="#预处理器" class="headerlink" title="预处理器"></a>预处理器</h4><ul>
+<li>检查sql查询语句中的<strong>表或者字段</strong>是否存在</li>
+<li>将Select * 中的 *<strong>号 扩展为表上的所有列</strong></li>
+</ul>
+<h4 id="优化器"><a href="#优化器" class="headerlink" title="优化器"></a>优化器</h4><p>经过预处理阶段后，还需要为sql查询语句先<strong>指定一个执行计划，</strong>这个工作交由[优化器]来完成</p>
+<ul>
+<li>优化器主要负责将sql查询语句的执行方案确定下来，比如在表里面有多个索引的时候，<strong>优化器会基于查询成本的考虑，来决定使用哪个索引</strong></li>
+</ul>
+<h4 id="执行器"><a href="#执行器" class="headerlink" title="执行器"></a>执行器</h4><p>经历完优化器后，就确定了执行方案，接下来mysql就真正开始执行语句了，这个过程是由执行器来完成的，在执行的过程中，执行器就会和存储引擎交互了，交互是以记录为单位的。接下来，用三种方式执行过程。</p>
+<h5 id="主键索引查询"><a href="#主键索引查询" class="headerlink" title="主键索引查询"></a>主键索引查询</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> product <span class="hljs-keyword">where</span> id <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
+
+<h5 id="全局扫描"><a href="#全局扫描" class="headerlink" title="全局扫描"></a>全局扫描</h5><h5 id="索引下推"><a href="#索引下推" class="headerlink" title="索引下推"></a>索引下推</h5><h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>执行一条sql查询语句的过程</p>
+<ol>
+<li>连接器：建立连接，管理连接，校验用户身份</li>
+<li>查询缓存：查询语句如果命中查询缓存则直接返回，否则继续往下执行。</li>
+<li>解析sql，通过解析器对sql查询语句进行词法分析，语法分析，然后构建语法树，方便后序模块读取表名、字段、语句类型。</li>
+<li>执行sql：执行sql共有三个阶段<ol>
+<li>预处理阶段：检查表或者字段是否存在；将select中的 * 扩展为表上所有列</li>
+<li>优化阶段：基于<strong>查询成本</strong>的考虑，选择查询成本最小的执行计划</li>
+<li>执行阶段：根据执行计划执行sql查询语句，从存储引擎读取记录，返回给客户端。</li>
+</ol>
+</li>
+</ol>
+<h3 id="什么是索引？"><a href="#什么是索引？" class="headerlink" title="什么是索引？"></a>什么是索引？</h3><p>索引的定义就是<strong>帮助存储引擎快速获取数据的一种数据结构</strong>，形象的说就是<strong>索引是数据的目录</strong></p>
+<p>所谓的存储引擎，说白了就是如何存储数据、如何为存储的数据建立索引和如何更新、查询数据等技术的实现方法</p>
+<h3 id="索引的分类"><a href="#索引的分类" class="headerlink" title="索引的分类"></a>索引的分类</h3><ul>
+<li>按【数据结构】分类：B+Tree索引、hash索引、Full-text索引</li>
+<li>按【物理存储】分类：聚簇索引(主键索引)、二级索引(辅助索引)</li>
+<li>按【字段特性】分类：主键索引、唯一索引、普通索引、前缀索引。</li>
+<li>按【字段个数】分类：单列索引、联合索引</li>
+</ul>
+<p>在创建表时。InnoDB存储引擎根据不同的场景选择不同的列作为索引：</p>
+<ul>
+<li>如果有主键，默认会使用主键作为聚簇索引的索引键（key）</li>
+<li>如果没有主键，就选择第一个不包含NULL值的唯一列作为聚簇索引的索引键</li>
+<li>在上面两个都没有的情况下，InnoDB将自动生成一个隐式自增id列作为聚簇索引的索引键</li>
+</ul>
+<p>其它索引都属于辅助索引。也被称为二级索引或非聚簇索引。创建的主键索引和二级索引默认使用的是B+Tree索引</p>
+<h3 id="按【数据结构】分类"><a href="#按【数据结构】分类" class="headerlink" title="按【数据结构】分类"></a>按【数据结构】分类</h3><p>B+树索引</p>
+<p>B+Tree是一种多叉树，<strong>叶子节点才存放数据</strong>，<strong>非叶子节点只存放索引</strong>，而且<strong>每个叶子节点里的数据是按主键顺序存放</strong>的。每一层父节点的索引值都会出现在下层叶子节点的索引值中，<strong>因此在叶子节点中，包括了所有的索引值信息</strong>，而且每一个叶子节点都指向下一个叶子节点，形成一个链表</p>
+<p>主键索引的B+ Tree如图所示</p>
+<p><img src="https://cdn.xiaolincoding.com/gh/xiaolincoder/mysql/%E7%B4%A2%E5%BC%95/btree.drawio.png" srcset="/img/loading.gif" lazyload alt="主键索引 B+Tree"></p>
+<h4 id="通过主键查询商品数据的过程"><a href="#通过主键查询商品数据的过程" class="headerlink" title="通过主键查询商品数据的过程"></a>通过主键查询商品数据的过程</h4><p>比如，我们执行了下面这条查询语句，这条语句使用了主键索引查询 id 号为 5 的商品。查询过程是这样的，B+Tree 会自顶向下逐层进行查找：</p>
+<ul>
+<li>将 5 与根节点的索引数据 (1，10，20) 比较，5 在 1 和 10 之间，所以根据 B+Tree的搜索逻辑，找到第二层的索引数据 (1，4，7)；</li>
+<li>在第二层的索引数据 (1，4，7)中进行查找，因为 5 在 4 和 7 之间，所以找到第三层的索引数据（4，5，6）；</li>
+<li>在叶子节点的索引数据（4，5，6）中进行查找，然后我们找到了索引值为 5 的行数据。</li>
+</ul>
+<p>数据库的索引和数据都是存储在硬盘的，我们可以把读取一个节点当作一次磁盘 I&#x2F;O 操作。那么上面的整个查询过程一共经历了 3 个节点，也就是进行了 3 次 I&#x2F;O 操作。</p>
+<p>B+Tree 存储千万级的数据只需要 3-4 层高度就可以满足，这意味着从千万级的表查询目标数据最多需要 3-4 次磁盘 I&#x2F;O，所以<strong>B+Tree 相比于 B 树和二叉树来说，最大的优势在于查询效率很高，因为即使在数据量很大的情况，查询一个数据的磁盘 I&#x2F;O 依然维持在 3-4次。</strong></p>
+<h4 id="为什么Mysql-InnoDB选择B-Tree作为索引的数据结构"><a href="#为什么Mysql-InnoDB选择B-Tree作为索引的数据结构" class="headerlink" title="为什么Mysql InnoDB选择B+Tree作为索引的数据结构"></a>为什么Mysql InnoDB选择B+Tree作为索引的数据结构</h4><ul>
+<li>B+ Tree vs B Tree<ul>
+<li><strong>B+ Tree只在叶子节点存储数据 而B树的非叶子节点也要存储数据</strong> 所以<strong>B+Tree的单个节点的数据量更小</strong> 在相同的磁盘I&#x2F;O下，就能查询更多的节点</li>
+<li>另外B+Tree叶子节点采用的是双链表连接，适合mysql中常见的<strong>基于范围</strong>的顺序查找</li>
+</ul>
+</li>
+<li>B+ Tree vs 二叉树<ul>
+<li>对于有 <strong>N 个叶子节点</strong>的 B+Tree，其搜索复杂度为<code>O(logdN)</code>，其中 <strong>d 表示节点允许的最大子节点个数为 d 个</strong>。</li>
+<li>在实际的应用当中， d 值是大于100的，这样就保证了，即使数据达到千万级别时，<strong>B+Tree 的高度依然维持在 3~4 层左右</strong>，也就是说<strong>一次数据查询操作只需要做 3~4 次的磁盘 I&#x2F;O 操作就能查询到目标数据</strong></li>
+<li>**而二叉树的每个父节s点的儿子节点个数只能是 2 个，意味着其搜索复杂度为 <code>O(logN)</code>**，这已经比 B+Tree 高出不少，因此二叉树检索到目标数据所经历的磁盘 <strong>I&#x2F;O 次数要更多。</strong></li>
+</ul>
+</li>
+<li>B+ Tree vs hash<ul>
+<li>Hash在做等值查询的时候效率很快 搜索复杂度为O(1)</li>
+<li>但是<strong>Hash表不适合做范围查询</strong>，<strong>它更适合做等值的查询</strong>，这也是B + Tree索引要比Hash表索引有着更广泛的场景的原因</li>
+</ul>
+</li>
+</ul>
+<h3 id="按【字段特性】分类："><a href="#按【字段特性】分类：" class="headerlink" title="按【字段特性】分类："></a>按【字段特性】分类：</h3><ul>
+<li><p>主键索引</p>
+<ul>
+<li><p>主键索引就是建立在主键字段上的索引，通常在创建表的时候一起创建，一张表最多只有一个主键索引，索引列的值不允许有空值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> table_name  (<br>  ....<br>  <span class="hljs-keyword">PRIMARY</span> KEY (index_column_1) <span class="hljs-keyword">USING</span> BTREE<br>);<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>唯一索引</p>
+<ul>
+<li><p>唯一索引建立在UNIQUE字段上的索引，一张表可以有多个唯一索引，索引列的值必须唯一，但是允许有空值</p>
+</li>
+<li><p>在创建表时，创建唯一索引的方式如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> table_name  (<br>  ....<br>  <span class="hljs-keyword">UNIQUE</span> KEY(index_column_1,index_column_2,...) <br>);<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>普通索引</p>
+<ul>
+<li><p>普通索引就是建立在普通字段上的索引，既不要求字段为主键，也不要求字段为UNIQUE。</p>
+</li>
+<li><p>在创建表时，创建普通索引的方式如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> table_name  (<br>  ....<br>  INDEX(index_column_1,index_column_2,...) <br>);<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>前缀索引</p>
+<ul>
+<li><p>前缀索引是指对字符类型字段的前几个字符建立的索引，而不是在整个字段上建立的索引，前缀索引可以建立在字段类型为char、varchar、binary、varbinary的列上</p>
+</li>
+<li><p>使用前缀索引的目的是为了减少索引占用的储存空间，提升查询效率</p>
+</li>
+<li><p>在创建表时，创建前缀索引的方式如下</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> table_name(<br>    column_list,<br>    INDEX(column_name(length))<br>); <br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="按字段个数分类"><a href="#按字段个数分类" class="headerlink" title="按字段个数分类"></a>按字段个数分类</h3><p>从字段个数的角度来看，索引分为单列索引，联合索引</p>
+<ul>
+<li>建立在单列上的索引称为单列索引，比如主键索引</li>
+<li>建立在多列上的索引称为联合索引</li>
+</ul>
+<h4 id="什么时候需要-x2F-不需要创建索引"><a href="#什么时候需要-x2F-不需要创建索引" class="headerlink" title="什么时候需要&#x2F;不需要创建索引"></a>什么时候需要&#x2F;不需要创建索引</h4><p>索引最大的好处就是提高查询速度，但是索引也是有缺点的,比如：</p>
+<ul>
+<li>需要<strong>占用物理空间</strong>，数量越大，占用空间越大</li>
+<li><strong>创建索引和维护索引要耗费时间</strong>，这种时间随着数据量的增大而增大</li>
+<li><strong>会降低表的增删改的效率</strong>，因为每次增删改索引 ，B+树为了维护索引有序性，都需要进行<strong>动态维护</strong></li>
+</ul>
+<p>所以索引不是万能钥匙，需要根据场景来使用</p>
+<h4 id="什么时候使用索引？"><a href="#什么时候使用索引？" class="headerlink" title="什么时候使用索引？"></a>什么时候使用索引？</h4><ul>
+<li><strong>字段有唯一性限制的</strong>，比如商品编码</li>
+<li><strong>经常用于where</strong>查询条件的字段，这样能提高整个表的查询速度，如果查询条件不是一个字段，可以建立联合索引</li>
+<li>经常用于<strong>Group By 和 Order By</strong>的字段，<strong>这样在查询的时候就不需要再去做一次排序了</strong>，因为我们都已经直到了建立索引之后B+树都是已经排序好的</li>
+</ul>
+<h4 id="什么时候不需要索引？"><a href="#什么时候不需要索引？" class="headerlink" title="什么时候不需要索引？"></a>什么时候不需要索引？</h4><ul>
+<li>Where条件，Group by Order by 里用不到的字段，索引的价值是快速定位 如果起不到定位的字段是不需要创建索引的，因为索引是会占用物理空间的。</li>
+<li><strong>字段中存在大量重复数据，不需要创建索引</strong>，比如性别字段，只有男女，如果数据库表中，男女的记录分布均匀，那么无论搜索哪个值都可能得到一半的数据。在这些情况下，还不如不要索引，因为 MySQL 还有一个查询优化器，查询优化器发现某个值出现在表的数据行中的百分比很高的时候，它一般会忽略索引，进行全表扫描。</li>
+<li><strong>表数据太少的时候</strong>，不需要创建索引；</li>
+<li><strong>经常更新的字段不用创建索引</strong>，比如不要对电商项目的用户余额建立索引，因为索引字段频繁修改，由于要维护 B+Tree的有序性，那么就需要频繁的重建索引，这个过程是会影响数据库性能的。</li>
+</ul>
+<h3 id="有什么优化索引的方法？"><a href="#有什么优化索引的方法？" class="headerlink" title="有什么优化索引的方法？"></a>有什么优化索引的方法？</h3><p>挖个坑</p>
+<p><img src="https://cdn.xiaolincoding.com/gh/xiaolincoder/mysql/%E7%B4%A2%E5%BC%95/%E7%B4%A2%E5%BC%95%E6%80%BB%E7%BB%93.drawio.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="从数据页的角度看B-树"><a href="#从数据页的角度看B-树" class="headerlink" title="从数据页的角度看B+树"></a>从数据页的角度看B+树</h3><h3 id="事务有哪些特性？"><a href="#事务有哪些特性？" class="headerlink" title="事务有哪些特性？"></a>事务有哪些特性？</h3><ul>
+<li><p><strong>原子性</strong>：一个事务中的所有操作，<strong>要么全部完成</strong>，<strong>要么全部不完成</strong>，不会结束在中间某个环节，而且事务在执行过程中发生错误，会被回滚到事务开始前的状态，就像这个事务从来没有执行过一样</p>
+</li>
+<li><p><strong>一致性</strong>：是指事务操作前和操作后，数据满足<strong>完整性约束</strong>，<strong>数据库保持一致性状态。</strong></p>
+</li>
+<li><p><strong>隔离性</strong>：数据库允许<strong>多个并发事务</strong>同时对其数据进行读写和修改的能力，隔离性可以<strong>防止多个事务并发执行时由于交叉执行而导致数据的不一致</strong></p>
+</li>
+<li><p><strong>持久性</strong>：事务处理结束后，对数据的<strong>修改就是永久的</strong>，即便系统故障也不会丢失</p>
+<p>”吃一个源“</p>
+</li>
+</ul>
+<h3 id="InnoDB引擎通过什么技术来保证事务的这四个特性？"><a href="#InnoDB引擎通过什么技术来保证事务的这四个特性？" class="headerlink" title="InnoDB引擎通过什么技术来保证事务的这四个特性？"></a>InnoDB引擎通过什么技术来保证事务的这四个特性？</h3><ul>
+<li>持久性是通过redo log 重做日志来保证的</li>
+<li>原子性是通过 undo log 回滚日志来保证的</li>
+<li>隔离性是通过 <strong>MVCC 多版本并发控制</strong>来保证的</li>
+<li>一致性是通过持久性 + 原子性 + 隔离性来保证</li>
+</ul>
+<h3 id="并行事务会发生什么问题"><a href="#并行事务会发生什么问题" class="headerlink" title="并行事务会发生什么问题"></a>并行事务会发生什么问题</h3><p>Mysql服务端是允许多个客户端连接的，这意味这mysql会出现同时处理多个事务的情况</p>
+<p>处理多个事务的时候，就会出现  脏读 不 、可重复读 幻读  的问题</p>
+<h4 id="脏读"><a href="#脏读" class="headerlink" title="脏读"></a>脏读</h4><p>如果一个事务读到了另一个<strong>未提交事务修改过的数据</strong> 就意味着发生了<strong>脏读</strong></p>
+<h4 id="不可重复读"><a href="#不可重复读" class="headerlink" title="不可重复读"></a>不可重复读</h4><p>在一个事务内多次读取同一个数据 如果出现前后两次读到的数据不一样的情况，就意味着发生了不可重复读现象</p>
+<h4 id="幻读"><a href="#幻读" class="headerlink" title="幻读"></a>幻读</h4><p>在一个事务内多次查询某个符合查询条件的记录数量，如果出现前后查询到的记录数量不一样的情况，就意味着发生了幻读现象</p>
+<h3 id="事务的隔离级别有哪些"><a href="#事务的隔离级别有哪些" class="headerlink" title="事务的隔离级别有哪些"></a>事务的隔离级别有哪些</h3><p>对于脏读 不可重复读 幻读 </p>
+<p>sql标准提出了四种隔离级别来规避这种现象，隔离级别越高，性能效率就越低</p>
+<ul>
+<li><p>读未提交： 指一个事务还没提交时，他做的变更就能被其它事务看到</p>
+</li>
+<li><p>读提交：指一个事务提交之后，他做的变更才能被其它事务看到</p>
+</li>
+<li><p>可重复读：指一个事务执行过程中看到的数据，一直跟这个事务启动时看到的数据是一致的  （默认）</p>
+<p>一个事务执行过程中看到的数据，一直跟这个事务启动时看到的数据是一致的</p>
+</li>
+<li><p>串行化：会对记录加上<strong>读写锁</strong>，在多个事务对这条记录进行读写操作时，如果发生了读写冲突的时候，<strong>后访问的事务必须等前一个事务执行完成</strong>，才能继续执行；</p>
+</li>
+<li><p>针对不同的隔离级别，并发事务时可能发生的现象也不同</p>
+</li>
+</ul>
+<p><img src="C:\Users\TC\AppData\Roaming\Typora\typora-user-images\image-20221108153319849.png" srcset="/img/loading.gif" lazyload alt="image-20221108153319849"></p>
+<p>也就是说：</p>
+<ol>
+<li>在读未提交的隔离级别下，可能会发生脏读、不可重复读和幻读现象</li>
+<li>在读提交的隔离级别下，可能发生不可重复读和幻读现象，但是不可能发生脏读现象</li>
+<li>在可重复读隔离级别下，可能发生幻读现象，但是不可能发生脏读和不可重复读现象</li>
+<li>在串行化隔离级别下，脏读、不可重复读和幻读现象都不可能会发生</li>
+</ol>
+<h3 id="MVVC"><a href="#MVVC" class="headerlink" title="MVVC"></a>MVVC</h3><h3 id="Mysql有哪些锁"><a href="#Mysql有哪些锁" class="headerlink" title="Mysql有哪些锁"></a>Mysql有哪些锁</h3><h4 id="全局锁"><a href="#全局锁" class="headerlink" title="全局锁"></a>全局锁</h4><p>要使用全局锁，则要执行这条命令：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">flush tables <span class="hljs-keyword">with</span> read lock<br></code></pre></td></tr></table></figure>
+
+<p>执行后，<strong>整个数据库就处于只读状态了</strong>，这时其它线程执行以下操作，都会被阻塞</p>
+<ul>
+<li>对数据的增删改操作</li>
+<li>对表结构的更改操作 alter table 、drop table等</li>
+</ul>
+<p>如果要释放全局锁，则要执行这条命令</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">unlock tables<br></code></pre></td></tr></table></figure>
+
+<h4 id="全局锁的应用场景是什么"><a href="#全局锁的应用场景是什么" class="headerlink" title="全局锁的应用场景是什么"></a>全局锁的应用场景是什么</h4><p>全局锁主要应用于做全库<strong>逻辑备份</strong>，这样在备份数据库期间，不会因为数据或表结构的更新，而出现备份文件的数据和预期的不一样</p>
+<h4 id="加全局锁又会带来什么缺点呢"><a href="#加全局锁又会带来什么缺点呢" class="headerlink" title="加全局锁又会带来什么缺点呢"></a>加全局锁又会带来什么缺点呢</h4><p>加上全局锁，意味着整个数据苦都是只读状态 那么如果数据库里有很多数据，备份就会花费很多的时间，关键是备份期间，业务只能数据，而不能更新数据，这样会造成业务停滞</p>
+<h2 id="Redis篇"><a href="#Redis篇" class="headerlink" title="Redis篇"></a>Redis篇</h2><h3 id="1-为什么要用缓存？"><a href="#1-为什么要用缓存？" class="headerlink" title="1.为什么要用缓存？"></a>1.为什么要用缓存？</h3><p>使用缓存的目的就是提升读写性能，而实际业务场景下，更多的就是为了<strong>提升读写性能</strong>，带来更好的性能，带来更高的并发量。Redis的读写性能比Mysql好的多，我们就可以吧Mysql中的<strong>热点数据</strong>缓存到Redis中，提升读写性能，同时也<strong>减轻了Mysql的读写压力</strong></p>
+<h3 id="2-使用Redis有哪些好处？"><a href="#2-使用Redis有哪些好处？" class="headerlink" title="2.使用Redis有哪些好处？"></a>2.使用Redis有哪些好处？</h3><ul>
+<li>读取速度快，因为<strong>数据存在内存</strong>中，所以数据存取快</li>
+<li><strong>支持多种数据结构</strong>，包括字符串、列表、集合、有序集合、哈希等</li>
+<li><strong>支持事务</strong>，且<strong>操作遵守原子性</strong>，即对数据的操作要么都执行，要么都不支持</li>
+<li>还<strong>拥有其他丰富的功能</strong>，队列、主从复制、集群、数据持久化等功能。</li>
+</ul>
+<h3 id="3-为什么Redis单线程模型效率也能那么高"><a href="#3-为什么Redis单线程模型效率也能那么高" class="headerlink" title="3.为什么Redis单线程模型效率也能那么高"></a>3.为什么Redis单线程模型效率也能那么高</h3><ol>
+<li><strong>C语言实现</strong>，效率高</li>
+<li><strong>纯内存</strong>操作</li>
+<li>基于<strong>IO多路复用机制</strong>提升Redis的I&#x2F;O效率</li>
+<li><strong>丰富的数据结构</strong></li>
+</ol>
+<h3 id="4-Redis到底是单线程还是多线程"><a href="#4-Redis到底是单线程还是多线程" class="headerlink" title="4.Redis到底是单线程还是多线程"></a>4.Redis到底是单线程还是多线程</h3><ul>
+<li>Redis6.0版本之前的单线程是指其网络I&#x2F;O和键值对读写是由一个线程完成的</li>
+<li>Redis6.0引入的多线程指的是网络请求过程采用了多线程，而键值对读写命令任然是单线程处理的，所以Redis依然是并发安全的</li>
+</ul>
+<h3 id="5-Redis底层数据是如何用跳表来存储的"><a href="#5-Redis底层数据是如何用跳表来存储的" class="headerlink" title="5.Redis底层数据是如何用跳表来存储的"></a>5.Redis底层数据是如何用跳表来存储的</h3><p>跳表：将有序链表改造为支持近似“折半查找”算法，可以进行快速的插入、删除、查找操作。</p>
+<p><img src="C:\Users\TC\AppData\Roaming\Typora\typora-user-images\image-20221104205304032.png" srcset="/img/loading.gif" lazyload alt="image-20221104205304032"></p>
+<h3 id="6-Redis-key过期了为什么内存没有释放？"><a href="#6-Redis-key过期了为什么内存没有释放？" class="headerlink" title="6.Redis key过期了为什么内存没有释放？"></a>6.Redis key过期了为什么内存没有释放？</h3><ul>
+<li>Set命令如果不设置过期时间，那么Redis会自动擦除这个key的过期时间</li>
+<li>Redis对于过期key的处理一般有惰性删除和定式删除两种册略<ul>
+<li>惰性删除：当读&#x2F;写一个已经过期的key时，会触发惰性删除册略，判断key是否过期，如果过期了直接删除掉这个key</li>
+<li>定时删除：由于惰性删除策略无法保证冷数据被及时删掉，所以Redis会定期(默认每100ms)主动淘汰一批过期的key，这里的一批<strong>只是部分过期key</strong>，所以可能会出现部分key已经过期但还没有被清理掉的情况，导致内存并没有释放</li>
+</ul>
+</li>
+</ul>
+<h3 id="7-Redis没设置过期时间为什么被Redis主动删除了"><a href="#7-Redis没设置过期时间为什么被Redis主动删除了" class="headerlink" title="7.Redis没设置过期时间为什么被Redis主动删除了"></a>7.Redis没设置过期时间为什么被Redis主动删除了</h3><p>当Redis已用<strong>内存超过maxmemory限定时，触发主动清理策略</strong></p>
+<p><strong>主动清理策略</strong>主要分为以下三类</p>
+<ol>
+<li>针对<strong>设置了过期时间</strong>的key做处理<ol>
+<li>volatile-ttl : 在筛选时，会针对设置了过期时间的键值对，根据<strong>过期时间的先后进行</strong>删除，<strong>越早过期的越先被删除。</strong></li>
+<li>volatile-random： 就像它的名称一样，在设置了过期时间的键值对中，进行<strong>随机</strong>删除。</li>
+<li>volatile-LRU:会使用LRU算法筛选设置了过期时间的键值对删除</li>
+<li>volatile-LFU:会使用LFU算法筛选设置了过期时间的键值对删除</li>
+</ol>
+</li>
+<li>针对<strong>所有key</strong>做处理<ol>
+<li>allkeys-random： 从所有键值对中随机选择并删除数据</li>
+<li>allkeys-LRU：使用LRU算法在所有数据中进行筛选删除</li>
+<li>allkeys： 使用LFU算法在所有数据中进行筛选删除</li>
+</ol>
+</li>
+<li><strong>不处理</strong><ol>
+<li>noevction： 不会剔除任何数据，拒绝写入操作并返回客户端错误信息</li>
+</ol>
+</li>
+</ol>
+<h3 id="8-Redis淘汰算法LRU和LFU的区别"><a href="#8-Redis淘汰算法LRU和LFU的区别" class="headerlink" title="8.Redis淘汰算法LRU和LFU的区别"></a>8.Redis淘汰算法LRU和LFU的区别</h3><ol>
+<li>LRU算法 ：淘汰很久没有被访问的数据，一最近一次访问<strong>时间</strong>作为参考</li>
+<li>LFU算法：淘汰最近一段时间被访问你<strong>次数</strong>最少的数据，以次数作为参考，绝大多数情况我们都可以用LRU策略，当存在大量的<strong>热点缓存数据</strong>时，LFU更好</li>
+</ol>
+<h3 id="9-Redis持久化机制"><a href="#9-Redis持久化机制" class="headerlink" title="9.Redis持久化机制"></a>9.Redis持久化机制</h3><ol>
+<li><p>RDB持久化方式</p>
+<p>将某一个时刻的内存快照，<strong>以二进制的方式写入磁盘</strong></p>
+<p>手动触发：</p>
+<ul>
+<li>save命令，使Redis处于阻塞状态，直到RDB持久化完成，才会响应其它客户端发来的指令，所以在生产环境下不建议</li>
+<li>bgsave命令。<strong>fork出一个子进程执行持久化</strong>，主进程只在fork过程中有短暂的阻塞，子进程创建之后，主进程就可响应客户端请求<ul>
+<li>父进程和子进程共享一块内存空间，利用操作系统的”写时拷贝“，如果父进程写的话就会copy一个副本，在副本中修改数据</li>
+</ul>
+</li>
+</ul>
+<p>自动触发：</p>
+<ul>
+<li>save m n 在m秒内 如果有n个键发生改变 则自动触发持久化，通过bgsave执行，如果设置多个，只要满足其一就会触发，配置文件中有默认配置(可以注释掉)</li>
+<li>flushall: 清空redis所有的数据库，flushdb清空当前redis所在库数据(默认是0号数据库)，会清空RDB文件</li>
+<li>主从同步：全量同步时会自动触发bgsave命令，生成rdb发送给从节点</li>
+</ul>
+<p>优点：</p>
+<p>​	1.整个Redis数据库将只包含一个文件dump.rdb，方便持久化</p>
+<p>​	2.容灾性好，方便备份</p>
+<p>​	3.性能最大化。fork子进程来完成写操作，让主进程继续处理命令，所以是IO最大化。使用单独子进程来进行持久化，主进程不会进行任何IO操作，保证了Redis的高性能</p>
+<p>​	4.数据集大时，比AOF启动效率高</p>
+<p>缺点：</p>
+<ol>
+<li>数据安全性低，RDB是间隔一段时间进行持久化，如果持久化之间redis发生故障，会发生数据丢失。所以这种方式更适合数据要求不严谨的时候</li>
+<li>由于RDB是通过fork子进程来协助完成持久化工作的，因此，如果当数据集较大时，可能会导致整个服务器停止服务几百毫秒，会占用cpu</li>
+</ol>
+</li>
+</ol>
+<p>2.AOF</p>
+<p>​	以日志的形式记录服务器所处理的写、删除操作，查询操作不会记录，以文本的方式记录，可以打开看到详细的操作记录，调操作系统命令进程刷盘</p>
+<ol>
+<li>所有写命令都会追加到AOF缓冲中</li>
+<li>AOF缓冲区根据对应的策略向硬盘进行同步操作</li>
+<li>随着AOF文件越来越大，需要定期对AOF文件进行重写，达到压缩的命令</li>
+<li>当Redis重启时，可以加载AOF文件进行数据恢复</li>
+</ol>
+<p>同步策略：</p>
+<ol>
+<li>每秒同步：异步完成，效率很高，一旦系统出现宕机现象，那么这一秒中内修改的数据将会丢失</li>
+<li>每修改同步：同步持久化，每次发生的数据变化都会被立即记录到磁盘中，最多丢一条</li>
+<li>不同步，由操作系统控制</li>
+</ol>
+<p>优点：</p>
+<ul>
+<li>数据安全</li>
+<li>通过append模式写文件，即使中途服务器宕机也不会破坏已经存在的内容，可以通过redis-check-aof工具解决数据一致性的问题</li>
+<li>AOF机制的rewrite模式。定期对AOF文件进行重写，以达到压缩的目的</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>AOF文件比RDB大，且恢复速度慢</li>
+<li>数据集大的时候，启动效率低</li>
+<li>运行效率没有RDB高</li>
+</ul>
+<p>10.Redis过期键的删除策略</p>
+<p>​	Redis是key-value数据库，我们可以设置Redis中缓存的key的过期时间，Redis的过期策略就是指当Redis中缓存的key过期时，Redis如何处理</p>
+<ul>
+<li>惰性过期：只有当访问一个key时，才会判断该key是否已经过期，过期则清除，该策略可以最大化地节省CPU资源，却对内存非常不友好。极端情况可能出现大量的过期key没有再次被访问，从而不会被清除，占用大量内存。</li>
+<li>定期过期：每隔一定的时间，会扫描<strong>一定数量</strong>的数据库的expires字典中一定数量的key，并清除其中已过期的key。该策略是前两者的一个这种方案。</li>
+</ul>
+<p>Redis中同时使用了惰性过期和定时过期两种过期策略</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%A6%E4%B9%A0-%E9%9D%A2%E8%AF%95/" class="category-chain-item">/学习/面试</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%85%AB%E8%82%A1%E5%BA%9F%E6%9F%B4/">#八股废柴</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>面试题</div>
+      <div>http://example.com/2022/10/30/面试题/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Tao Chen</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年10月30日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/11/01/Hot100/" title="hot100">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">hot100</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/09/06/%E7%89%9B%E5%AE%A2%E7%BD%91Java%E5%88%B7%E9%A2%98/" title="牛客网Java刷题">
+                        <span class="hidden-mobile">牛客网Java刷题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,875 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Tao Chen">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Mysql进阶第一章 MySQL架构和历史1.1 Mysql逻辑架构书中插图：  小林插图：  1.1.1 连接管理与安全性 连接语句  1234# -h 指定 MySQL 服务得 IP 地址，如果是连接本地的 MySQL服务，可以不用这个参数；# -u 指定用户名，管理员角色名为 root；# -p 指定密码，如果命令行中不填写密码（为了密码安全，建议不要在命令行写密码），就需要在交互对话里面输">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql进阶">
+<meta property="og:url" content="http://example.com/2022/11/11/Mysql%E8%BF%9B%E9%98%B6/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Mysql进阶第一章 MySQL架构和历史1.1 Mysql逻辑架构书中插图：  小林插图：  1.1.1 连接管理与安全性 连接语句  1234# -h 指定 MySQL 服务得 IP 地址，如果是连接本地的 MySQL服务，可以不用这个参数；# -u 指定用户名，管理员角色名为 root；# -p 指定密码，如果命令行中不填写密码（为了密码安全，建议不要在命令行写密码），就需要在交互对话里面输">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="c:/Users/TC/AppData/Roaming/Typora/typora-user-images/image-20221111142617773.png">
+<meta property="og:image" content="c:/Users/TC/AppData/Roaming/Typora/typora-user-images/image-20221111142603109.png">
+<meta property="og:image" content="c:/Users/TC/AppData/Roaming/Typora/typora-user-images/image-20221112113509116.png">
+<meta property="og:image" content="c:/Users/TC/AppData/Roaming/Typora/typora-user-images/image-20221112113938404.png">
+<meta property="og:image" content="c:/Users/TC/AppData/Roaming/Typora/typora-user-images/image-20221112115313340.png">
+<meta property="og:image" content="c:/Users/TC/AppData/Roaming/Typora/typora-user-images/image-20221112121857380.png">
+<meta property="og:image" content="c:/Users/TC/AppData/Roaming/Typora/typora-user-images/image-20221112144837888.png">
+<meta property="article:published_time" content="2022-11-11T06:17:04.237Z">
+<meta property="article:modified_time" content="2022-11-12T07:46:03.024Z">
+<meta property="article:author" content="Tao Chen">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="c:/Users/TC/AppData/Roaming/Typora/typora-user-images/image-20221111142617773.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Mysql进阶 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>晨の私密花园</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于我
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg/1.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Mysql进阶"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-11 14:17" pubdate>
+          2022年11月11日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          41 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Mysql进阶</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Mysql进阶"><a href="#Mysql进阶" class="headerlink" title="Mysql进阶"></a>Mysql进阶</h1><h2 id="第一章-MySQL架构和历史"><a href="#第一章-MySQL架构和历史" class="headerlink" title="第一章 MySQL架构和历史"></a>第一章 MySQL架构和历史</h2><h3 id="1-1-Mysql逻辑架构"><a href="#1-1-Mysql逻辑架构" class="headerlink" title="1.1 Mysql逻辑架构"></a>1.1 Mysql逻辑架构</h3><p>书中插图：</p>
+<p><img src="C:\Users\TC\AppData\Roaming\Typora\typora-user-images\image-20221111142617773.png" srcset="/img/loading.gif" lazyload alt="image-20221111142617773"></p>
+<p>小林插图：</p>
+<p><img src="C:\Users\TC\AppData\Roaming\Typora\typora-user-images\image-20221111142603109.png" srcset="/img/loading.gif" lazyload alt="image-20221111142603109"></p>
+<h4 id="1-1-1-连接管理与安全性"><a href="#1-1-1-连接管理与安全性" class="headerlink" title="1.1.1 连接管理与安全性"></a>1.1.1 连接管理与安全性</h4><ul>
+<li>连接语句</li>
+</ul>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs crmsh"><span class="hljs-comment"># -h 指定 MySQL 服务得 IP 地址，如果是连接本地的 MySQL服务，可以不用这个参数；</span><br><span class="hljs-comment"># -u 指定用户名，管理员角色名为 root；</span><br><span class="hljs-comment"># -p 指定密码，如果命令行中不填写密码（为了密码安全，建议不要在命令行写密码），就需要在交互对话里面输入密码</span><br>mysql -h$ip -u$<span class="hljs-keyword">user</span> <span class="hljs-title">-p</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>连接协议</p>
+<ul>
+<li><p>MYSQL是基于TCP协议进行传输的，如果用户名和密码都没有问题，连接器就会获取该用户的权限，然后保存起来，后续该用户在此连接里的任何操作，都会基于连接开始时读到的权限进行权限逻辑的判断</p>
+</li>
+<li><p>所以，如果一个用户已经建立了连接，即使管理员中途修改了该用户的权限，也不会影响已经存在连接的权限。修改完成后，只有在新建的连接才会使用新的权限设置。</p>
+</li>
+</ul>
+</li>
+<li><p>连接数量</p>
+<ul>
+<li><p>如何查看mysql被多少个客户端连接了？</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autoit">show <span class="hljs-built_in">processlist</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>mysql的连接数有限制吗</p>
+<p>mysql的最大连接数由max_connections参数控制</p>
+</li>
+</ul>
+</li>
+<li><p>空闲连接</p>
+<ul>
+<li><p>空闲连接会一致占用着吗？</p>
+<p>不会，mysql定义了最大连接时长，由wait_timeout参数控制，默认是八小时	</p>
+</li>
+<li><p>如何手动断开</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">kill</span> connection + <span class="hljs-built_in">id</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>长短连接</p>
+<ul>
+<li><p>mysql的连接也和http一样，有长短连接的概念，它们的区别如下：	</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs text">// 短连接<br>连接 mysql 服务（TCP 三次握手）<br>执行sql<br>断开 mysql 服务（TCP 四次挥手）<br><br>// 长连接<br>连接 mysql 服务（TCP 三次握手）<br>执行sql<br>执行sql<br>执行sql<br>....<br>断开 mysql 服务（TCP 四次挥手）<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>长连接和短链接的优缺点</p>
+<ul>
+<li><p>长连接可以减少建立连接和断开连接的过程，所以一般是使用长连接</p>
+</li>
+<li><p>但是使用长连接可能会占用内存增多</p>
+</li>
+</ul>
+</li>
+<li><p>怎样解决长连接占用内存的问题？</p>
+<ul>
+<li>定期断开长连接</li>
+<li>客户端主动重置连接  MySQL 5.7 版本实现了 <code>mysql_reset_connection()</code> 函数的接口，注意这是接口函数不是命令，那么当客户端执行了一个很大的操作后，在代码里调用 mysql_reset_connection 函数来重置连接，来释放内存，这个过程不需要重连和重新做权限验证，但是会将连接恢复到刚刚创建完时的状态。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-1-2优化和执行"><a href="#1-1-2优化和执行" class="headerlink" title="1.1.2优化和执行"></a>1.1.2优化和执行</h4><h5 id="1-1-2-1解析sql"><a href="#1-1-2-1解析sql" class="headerlink" title="1.1.2.1解析sql"></a>1.1.2.1解析sql</h5><ul>
+<li><p>词法分析</p>
+<p>mysql会根据输入的字符串识别出<strong>关键词</strong>出来，构建<strong>语法树</strong></p>
+</li>
+<li><p>语法分析</p>
+<p>根据词法分析的结果，语法解析器会根据语法规则，判断输入的sql语句是否满足sql语法（表不存在或者字段不存在不在这里判断）</p>
+</li>
+</ul>
+<h5 id="1-1-2-2执行sql"><a href="#1-1-2-2执行sql" class="headerlink" title="1.1.2.2执行sql"></a>1.1.2.2执行sql</h5><ol>
+<li><p>预处理</p>
+<ul>
+<li>检查SQL查询语句种的表或者字段是否存在</li>
+<li>将select * 中的 * 扩展为表上的所有列</li>
+</ul>
+</li>
+<li><p>优化器</p>
+<p>优化器主要负责将SQL查询语句的执行方案确定下来</p>
+</li>
+<li><p>执行器</p>
+<p>两个经典的执行过程</p>
+<ul>
+<li><p>主键索引查询</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> product <span class="hljs-keyword">where</span> id <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
+
+<p>查询流程</p>
+<p>​		这条查询语句的查询条件用到了主键索引，而且是等值查询，同时主键 id 是唯一，不会有 id 相同的记录，所以优化器决定选用访问类型为 const 进行查询，也就是使用主键索引查询一条记录</p>
+<ul>
+<li>执行器第一次查询 ，会调用<strong>read_first_record函数指针</strong>指向的函数，因为优化器选择的访问类型为const，这个函数指针被指向为InnoDB引擎索引查询的接口，把条件id &#x3D; 1交给存储引擎，让存储引擎定位符合条件的第一条记录</li>
+<li>存储引擎通过主键索引的B+树结构定位到id &#x3D; 1的第一条记录，如果记录是不存在的，就会向执行器上报记录找不到的结果，然后查询结束，如果记录是存在的，就会将记录返回给执行器</li>
+<li>执行器从存储引擎读到记录后，接着判断记录是否符合查询条件，如果符合则发送给客户端，如果不符合则跳过该记录</li>
+<li>执行器查询的过程是一个while循环，所以还会再查一次，但是因为不是第一次查询了，所以会调用read_record函数指针指向的函数，因为优化器选择的访问类型为const，这个函数指针被指向为一个永远返回-1的函数，所以调用该函数的时候，执行器退出循环</li>
+</ul>
+</li>
+<li><p>全局扫描</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> product <span class="hljs-keyword">where</span> <span class="hljs-type">name</span> = <span class="hljs-string">&#x27;iphone&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<p>查询流程：</p>
+<p>​	  这条查询语句的查询条件没有用到索引，所以优化器决定选用访问类型为 ALL 进行查询，也就是全表扫描的方式查询，那么这时执行器与存储引擎的执行流程是这样的：</p>
+<ul>
+<li>执行器第一次查询，会调用read_first_record函数指针指向的函数，因为优化器选择的访问类型为all，这个函数指针被执行为 InnoDB 引擎全扫描的接口，<strong>让存储引擎读取表中的第一条记录</strong>；</li>
+<li>执行器会判断读到的这条记录的 name 是不是 iphone，如果不是则跳过；如果是则将记录发给客户（Server层每从存储引擎读到一条记录就会发送给客户端，之所以客户端显示的失手是直接显示所有记录的，是因为<strong>客户端是等查询语句查询完成后，才会显示出所有的记录</strong>）</li>
+<li>执行器查询的过程是一个while循环，所以还会再查一次，会调用<strong>read_record函数指针</strong>指向的还是<strong>InnoDB引擎全扫描的接口</strong>，所以接着向存储引擎层要求取出后就将其返回给执行器，执行器继续判断条件，不符合查询条件即跳过该记录，否则发送到客户端。</li>
+<li>一直重复上述过程，直到存储引擎把表中的所有记录读完，然后向执行器(server层)返回了读取完毕的信息</li>
+<li>执行器收到存储引擎报告的查询完毕的信息，退出循环，停止查询</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="1-2-并发控制"><a href="#1-2-并发控制" class="headerlink" title="1.2 并发控制"></a>1.2 并发控制</h3><h4 id="1-2-1读写锁"><a href="#1-2-1读写锁" class="headerlink" title="1.2.1读写锁"></a>1.2.1读写锁</h4><p>在处理并发读或者写时，可以通过实现一个由两种类型的锁组成的锁系统来解决问题。这两种类型的锁组成的锁系统来解决问题。</p>
+<ul>
+<li>共享锁（读锁）</li>
+<li>排他锁（写锁）</li>
+</ul>
+<h4 id="1-2-2锁粒度"><a href="#1-2-2锁粒度" class="headerlink" title="1.2.2锁粒度"></a>1.2.2锁粒度</h4><ul>
+<li>【优点】锁粒度越小，锁定的数据量越少，系统的并发程度越高，只要相互之间不发生冲突即可</li>
+<li>【缺点】锁粒度越小，消耗的资源越多，会影响到系统的性能</li>
+</ul>
+<h5 id="1-2-2-1表锁"><a href="#1-2-2-1表锁" class="headerlink" title="1.2.2.1表锁"></a>1.2.2.1表锁</h5><ul>
+<li>用户再对表进行<strong>写操作</strong>（插入 删除 更新等）前，需要先获得<strong>写锁</strong>，这回<strong>阻塞</strong>其他用户对该表的所有<strong>读写操作</strong>。只有没有写锁的时候，其他用户才能获得读锁</li>
+<li><strong>读锁之间不会互相阻塞</strong></li>
+</ul>
+<h5 id="1-2-2-2行级锁"><a href="#1-2-2-2行级锁" class="headerlink" title="1.2.2.2行级锁"></a>1.2.2.2行级锁</h5><ul>
+<li>行级锁在存储引擎层实现，与server层无关</li>
+</ul>
+<h3 id="1-3事务"><a href="#1-3事务" class="headerlink" title="1.3事务"></a>1.3事务</h3><ul>
+<li>定义：事务是一组原子性的sql查询，或者说是一个独立的工作单元</li>
+<li>原子性:  一个事务必须被视为一个不可分割的最小工作单元，整个事务中的所有操作要么全部提交成功，要么全部失败回滚，对于一个事务来说，不可能只执行其中的一部分操作</li>
+<li>一致性：数据库总是从一个一致性的状态转换到另外一个一致性的状态。</li>
+<li>隔离性:  通常来说，一个事务所做的修改在最终提交以前，对其他事务是不可见的。</li>
+<li>持久性：一旦事务提交，则其所做的修改就会永久保存到数据库中，此时即使系统崩溃，修改的数据也不会丢失。</li>
+</ul>
+<h5 id="1-3-1InnoDB通过什么来保证事务的这四个特性的呢？"><a href="#1-3-1InnoDB通过什么来保证事务的这四个特性的呢？" class="headerlink" title="1.3.1InnoDB通过什么来保证事务的这四个特性的呢？"></a>1.3.1InnoDB通过什么来保证事务的这四个特性的呢？</h5><ul>
+<li>持久性是通过redo log(重做日志)来保证的</li>
+<li>原子性是通过undo log(回滚日志)来保证的</li>
+<li>隔离性是通过MVCC(多版本并发控制)来保证的</li>
+<li>一致性则是通过持久性 + 原子性 + 隔离性来保证的</li>
+</ul>
+<h4 id="1-3-2-并行事务的问题"><a href="#1-3-2-并行事务的问题" class="headerlink" title="1.3.2 并行事务的问题"></a>1.3.2 并行事务的问题</h4><ul>
+<li><p>脏读</p>
+<p>如果一个事务<strong>读</strong>到了另一个<strong>未提交事务修改过的数据</strong>，就意味着发生了脏读现象</p>
+<p>假设有 A 和 B 这两个事务同时在处理，事务 A 先开始从数据库中读取账户的余额数据，然后再执行更新操作，如果此时事务 A 还没有提交事务，而此时正好事务 B 也从数据库中读取账户的余额数据，那么事务 B 读取到的余额数据是刚才事务 A 更新后的数据，即使没有提交事务。</p>
+<p><img src="C:\Users\TC\AppData\Roaming\Typora\typora-user-images\image-20221112113509116.png" srcset="/img/loading.gif" lazyload alt="image-20221112113509116"></p>
+</li>
+<li><p>不可重复读</p>
+<p>在一个事务内多次读取同一个数据，如果出现前后两次读到的数据不一样的情况，就意味着发生了不可重复读</p>
+<p>假设有 A 和 B 这两个事务同时在处理，事务 A 先开始从数据库中读取账户的余额数据，然后继续执行代码逻辑处理，<strong>在这过程中如果事务 B 更新了这条数据，并提交了事务，那么当事务 A 再次读取该数据时，就会发现前后两次读到的数据是不一致的，这种现象就被称为不可重复读。</strong></p>
+<p><img src="C:\Users\TC\AppData\Roaming\Typora\typora-user-images\image-20221112113938404.png" srcset="/img/loading.gif" lazyload alt="image-20221112113938404"></p>
+</li>
+<li><p>幻读</p>
+<p>在一个事务内多次查询某个符合查询条件的记录数量，如果出现前后两次查询到的记录数量不一致的情况，就意味着发生了幻读现象</p>
+<p>假设有 A 和 B 这两个事务同时在处理，事务 A 先开始从数据库查询账户余额大于 100 万的记录，发现共有 5 条，然后事务 B 也按相同的搜索条件也是查询出了 5 条记录。接下来，事务 A 插入了一条余额超过 100 万的账号，并提交了事务，此时数据库超过 100 万余额的账号个数就变为 6。然后事务 B 再次查询账户余额大于 100 万的记录，此时查询到的记录数量有 6 条，<strong>发现和前一次读到的记录数量不一样了，就感觉发生了幻觉一样，这种现象就被称为幻读。</strong></p>
+</li>
+</ul>
+<p><img src="C:\Users\TC\AppData\Roaming\Typora\typora-user-images\image-20221112115313340.png" srcset="/img/loading.gif" lazyload alt="image-20221112115313340"></p>
+<p><strong>总结</strong></p>
+<ul>
+<li>脏读：读到其他事务未提交的数据；</li>
+<li>不可重复读：前后读取的数据不一致；</li>
+<li>幻读：前后读取的记录数量不一致。</li>
+</ul>
+<h4 id="1-3-3事务隔离级别有哪些"><a href="#1-3-3事务隔离级别有哪些" class="headerlink" title="1.3.3事务隔离级别有哪些"></a>1.3.3事务隔离级别有哪些</h4><ul>
+<li><p>读未提交</p>
+<p>指一个事务还没提交时，它做的变更就能被其他事务看到</p>
+</li>
+<li><p>读提交</p>
+<p>指一个事务提交之后，它做的变更才能被其他事务看到</p>
+</li>
+<li><p>可重复读(默认)</p>
+<p>指一个事务执行过程中看到的数据，一直跟这个事务启动时看到的数据是一致的</p>
+</li>
+<li><p>串行化</p>
+<p>会对记录加上读写锁，在多个事务对这条记录进行读写操作时，如果</p>
+</li>
+</ul>
+<p>针对不同的隔离级别，并发事务时可能发生的现象也会不同。</p>
+<p><img src="C:\Users\TC\AppData\Roaming\Typora\typora-user-images\image-20221112121857380.png" srcset="/img/loading.gif" lazyload alt="image-20221112121857380"></p>
+<p>也就是说：</p>
+<ul>
+<li>在「读未提交」隔离级别下，可能发生脏读、不可重复读和幻读现象；</li>
+<li>在「读提交」隔离级别下，可能发生不可重复读和幻读现象，但是不可能发生脏读现象；</li>
+<li>在「可重复读」隔离级别下，可能发生幻读现象，但是不可能脏读和不可重复读现象；</li>
+<li>在「串行化」隔离级别下，脏读、不可重复读和幻读现象都不可能会发生。</li>
+</ul>
+<h4 id="1-3-4-死锁"><a href="#1-3-4-死锁" class="headerlink" title="1.3.4 死锁"></a>1.3.4 死锁</h4><p>死锁是指两个或者多个事务在同一资源上相互占用，并请求锁定对方占用的资源，从而导致恶性循环的现象。当多个事务试图以<strong>不同的顺序</strong>锁定资源时，就可能产生死锁，多个事务<strong>同时锁定</strong>同一个资源时，也会产生死锁。</p>
+<p>例如：</p>
+<p><img src="C:\Users\TC\AppData\Roaming\Typora\typora-user-images\image-20221112144837888.png" srcset="/img/loading.gif" lazyload alt="image-20221112144837888"></p>
+<p>如果两个事务都执行了第一条update数据，更新了一条数据，同时也锁定了该行数据，接着每个事务都尝试去执行第二条update数据，却发现该行已经被对方锁定，然后两个事务都等待对方释放锁，同时又持有对方需要的锁，则陷入死循环。</p>
+<p><strong>InnoDB处理死锁的方法：</strong></p>
+<p>将持有最少行级排他锁的事务进行回滚</p>
+<h4 id="1-3-5-事务日志"><a href="#1-3-5-事务日志" class="headerlink" title="1.3.5 事务日志"></a>1.3.5 事务日志</h4><p>事务日志可以帮助<strong>提高</strong>事务的效率。使用事务日志，存储引擎在修改表的数据时只需要修改其内存拷贝，再把修改过的数据本身持久到磁盘。事务日志采用的是追加的方式，因此写日志的操作是<strong>磁盘上一小块区域内的顺序I&#x2F;O</strong>，而不随机I&#x2F;O需要在磁盘的多个地方移动磁头，所以采用事务日志的方式相对来说要快的多。事务日志持久以后，内存中被修改的数据在后台可以慢慢的刷回到磁盘。目前大多数存储引擎都是这样实现的，我们通常称之为<strong>预写式日志</strong>，修改数据需要写两次磁盘</p>
+<p>如果数据修改已经记录到事务日志并持久化，但数据本身还没有写回磁盘，此时系统崩溃，存储引擎在<strong>重启时</strong>能够<strong>自动恢复</strong>这部分修改的数据。</p>
+<h3 id="1-4-多版本并发控制"><a href="#1-4-多版本并发控制" class="headerlink" title="1.4 多版本并发控制"></a>1.4 多版本并发控制</h3><ul>
+<li><p>概述：</p>
+<p>MVCC可以认为是行级锁的一个变种，但是它在很多情况下避免了加锁操作，因此开销更低。</p>
+</li>
+<li><p>实现方式:</p>
+<p>MVCC的实现，是通过保存数据在某个节点的快照来实现的。也就是说，不管需要执行多长时间，每个事务看到的数据都是一致的。根据事务开始的时间不同，每个事务对同一张表，同一时刻看到的数据可能是不一样的。</p>
+</li>
+<li><p>分类</p>
+<ul>
+<li>乐观并发控制</li>
+<li>悲观并发控制</li>
+</ul>
+</li>
+<li><p>工作方式（以可重复读为例）</p>
+<ul>
+<li><p>Select</p>
+<p>InnoDB会根据以下两个条件检查每行记录</p>
+<ol>
+<li>InnoDB只查找行的系统版本号小于等于当前事务的系统版本号，这样可以确保事务读取的行，要么是在该事务之前就存在的或者是当前事务插入或者修改的</li>
+<li>行的删除版本要么未被定义，妖媚大于当前事务版本号，这样可以确保事务读取到的行，在事务开始之前未被删除</li>
+</ol>
+</li>
+<li><p>Insert</p>
+<p>InnoDB为新插入的每一行保存当前系统版本号作为行版本号</p>
+</li>
+<li><p>Delete</p>
+<p>InnoDB为删除的每一行保存当前版本号作为删除标识</p>
+</li>
+<li><p>Update</p>
+<p>InnoDB为插入一行新记录，保存当前系统版本号作为行版本号，同时保存当前系统版本号到原来的行作为删除标识</p>
+</li>
+</ul>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%A6%E4%B9%A0-%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0-%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/" class="category-chain-item">/学习/后端开发笔记/个人笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Mysql进阶</div>
+      <div>http://example.com/2022/11/11/Mysql进阶/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Tao Chen</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年11月11日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/11/01/Hot100/" title="hot100">
+                        <span class="hidden-mobile">hot100</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
