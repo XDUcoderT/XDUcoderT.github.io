@@ -16,26 +16,26 @@
   <meta name="author" content="Tao Chen">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1）陶晨(黑)vs山东徐浚恒(白)对局总览  行棋至此大致五五开，白下，白棋如何消去上面的黑势成了当前最重要的问题，A位置漏是好手，比较考验黑棋，实战选择了B位置靠三三的下法 黑棋吃住角 围住了上方实地，白棋左边很难办，拆的近略不满，拆的远（像实战一样）黑棋则可以直接动出，黑优势 白棋拖是本局的败招，有加厚黑棋之嫌，直接把上方白棋送掉，大亏 黑区滚一圈心情很愉快，此时白棋应当在B位置拔而不是立，白">
+    <meta name="description" content="Explain一、介绍使用Explain关键字可以模拟优化器执行sql语句，分析你的查询语句或者是结构的性能瓶颈。在select语句之前增加explain关键字，mysql会在查询上设置一个标记，执行查询会返回执行计划的信息，而不是执行这条sql。 注意：如果from中包含子查询，仍会执行该子查询，将结果放入临时表中 二、Explain中的列1.id列id列的编号是select的序列号,有几个se">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2022-08-21围棋复盘">
-<meta property="og:url" content="http://example.com/2022/08/25/%E5%9B%B4%E6%A3%8B%E5%A4%8D%E7%9B%98/index.html">
+<meta property="og:title" content="Explain">
+<meta property="og:url" content="http://example.com/2022/11/17/Explain%E8%AF%A6%E8%A7%A3/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1）陶晨(黑)vs山东徐浚恒(白)对局总览  行棋至此大致五五开，白下，白棋如何消去上面的黑势成了当前最重要的问题，A位置漏是好手，比较考验黑棋，实战选择了B位置靠三三的下法 黑棋吃住角 围住了上方实地，白棋左边很难办，拆的近略不满，拆的远（像实战一样）黑棋则可以直接动出，黑优势 白棋拖是本局的败招，有加厚黑棋之嫌，直接把上方白棋送掉，大亏 黑区滚一圈心情很愉快，此时白棋应当在B位置拔而不是立，白">
+<meta property="og:description" content="Explain一、介绍使用Explain关键字可以模拟优化器执行sql语句，分析你的查询语句或者是结构的性能瓶颈。在select语句之前增加explain关键字，mysql会在查询上设置一个标记，执行查询会返回执行计划的信息，而不是执行这条sql。 注意：如果from中包含子查询，仍会执行该子查询，将结果放入临时表中 二、Explain中的列1.id列id列的编号是select的序列号,有几个se">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/index/%E5%9B%B4%E6%A3%8B.jpg">
-<meta property="article:published_time" content="2022-08-25T12:24:57.560Z">
-<meta property="article:modified_time" content="2022-11-12T08:48:28.465Z">
+<meta property="og:image" content="http://example.com/img/index/mysql.jpg">
+<meta property="article:published_time" content="2022-11-17T04:54:40.551Z">
+<meta property="article:modified_time" content="2022-11-21T12:39:19.708Z">
 <meta property="article:author" content="Tao Chen">
-<meta property="article:tag" content="快乐围棋">
+<meta property="article:tag" content="刷题">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/index/%E5%9B%B4%E6%A3%8B.jpg">
+<meta name="twitter:image" content="http://example.com/img/index/mysql.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>2022-08-21围棋复盘 - Hexo</title>
+  <title>Explain - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -215,7 +215,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="2022-08-21围棋复盘"></span>
+            <span id="subtitle" data-typed-text="Explain"></span>
           
         </div>
 
@@ -226,8 +226,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-08-25 20:24" pubdate>
-          2022年8月25日 晚上
+        <time datetime="2022-11-17 12:54" pubdate>
+          2022年11月17日 下午
         </time>
       </span>
     
@@ -238,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          322 字
+          2.2k 字
         
       </span>
     
@@ -249,7 +249,7 @@
         
         
         
-          3 分钟
+          19 分钟
         
       </span>
     
@@ -287,20 +287,88 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">2022-08-21围棋复盘</h1>
+            <h1 style="display: none">Explain</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="1）陶晨-黑-vs山东徐浚恒-白"><a href="#1）陶晨-黑-vs山东徐浚恒-白" class="headerlink" title="1）陶晨(黑)vs山东徐浚恒(白)"></a>1）陶晨(黑)vs山东徐浚恒(白)</h2><p>对局总览<br><img src="/img/go/%E6%A1%83%E6%BA%90%E5%9B%B4%E6%A3%8B%E8%A7%92%E6%AF%94%E8%B5%9Bvs%E5%BE%90%E6%B5%9A%E6%81%92.gif" srcset="/img/loading.gif" lazyload alt="对局总览"></p>
-<p><img src="/img/go/%E6%A1%83%E6%BA%90%E5%9B%B4%E6%A3%8B%E8%A7%92%E6%AF%94%E8%B5%9Bvs%E5%BE%90%E6%B5%9A%E6%81%921.png" srcset="/img/loading.gif" lazyload alt="实战图1"></p>
-<p>行棋至此大致五五开，白下，白棋如何消去上面的黑势成了当前最重要的问题，A位置漏是好手，比较考验黑棋，实战选择了B位置靠三三的下法</p>
-<p><img src="/img/go/%E6%A1%83%E6%BA%90%E5%9B%B4%E6%A3%8B%E8%A7%92%E6%AF%94%E8%B5%9Bvs%E5%BE%90%E6%B5%9A%E6%81%922.png" srcset="/img/loading.gif" lazyload alt="实战图2"><br>黑棋吃住角 围住了上方实地，白棋左边很难办，拆的近略不满，拆的远（像实战一样）黑棋则可以直接动出，黑优势</p>
-<p><img src="/img/go/%E6%A1%83%E6%BA%90%E5%9B%B4%E6%A3%8B%E8%A7%92%E6%AF%94%E8%B5%9Bvs%E5%BE%90%E6%B5%9A%E6%81%927.png" srcset="/img/loading.gif" lazyload alt="实战图3"><br>白棋拖是本局的败招，有加厚黑棋之嫌，直接把上方白棋送掉，大亏</p>
-<p><img src="/img/go/%E6%A1%83%E6%BA%90%E5%9B%B4%E6%A3%8B%E8%A7%92%E6%AF%94%E8%B5%9Bvs%E5%BE%90%E6%B5%9A%E6%81%923.png" srcset="/img/loading.gif" lazyload alt="实战图4"><br>黑区滚一圈心情很愉快，此时白棋应当在B位置拔而不是立，白立黑粘又是先手，白亏。</p>
-<p><img src="/img/go/%E6%A1%83%E6%BA%90%E5%9B%B4%E6%A3%8B%E8%A7%92%E6%AF%94%E8%B5%9Bvs%E5%BE%90%E6%B5%9A%E6%81%924.png" srcset="/img/loading.gif" lazyload alt="实战图5"><br>白棋打入是比较冒险的一手，个人认为应当在下方A位置逼住黑棋，再找机会</p>
-<p><img src="/img/go/%E6%A1%83%E6%BA%90%E5%9B%B4%E6%A3%8B%E8%A7%92%E6%AF%94%E8%B5%9Bvs%E5%BE%90%E6%B5%9A%E6%81%925.png" srcset="/img/loading.gif" lazyload alt="实战图6"><br>白棋上方小活一块，但同时也让黑棋成了很多空，白棋打入结果并不好</p>
-<p><img src="/img/go/%E6%A1%83%E6%BA%90%E5%9B%B4%E6%A3%8B%E8%A7%92%E6%AF%94%E8%B5%9Bvs%E5%BE%90%E6%B5%9A%E6%81%926.png" srcset="/img/loading.gif" lazyload alt="实战图7"><br>收官阶段，白棋此时下出问题手，黑棋靠，白棋B位挡住是本手，不应该在下方夹，实战被黑棋先手破空，白亏损巨大</p>
+                <h1 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h1><h2 id="一、介绍"><a href="#一、介绍" class="headerlink" title="一、介绍"></a>一、介绍</h2><p>使用Explain关键字可以模拟优化器执行sql语句，分析你的查询语句或者是结构的性能瓶颈。在select语句之前增加explain关键字，mysql会在查询上设置一个标记，执行查询会返回执行计划的信息，而不是执行这条sql。</p>
+<p>注意：如果from中包含子查询，仍会执行该子查询，将结果放入临时表中</p>
+<h2 id="二、Explain中的列"><a href="#二、Explain中的列" class="headerlink" title="二、Explain中的列"></a>二、Explain中的列</h2><h3 id="1-id列"><a href="#1-id列" class="headerlink" title="1.id列"></a>1.id列</h3><p>id列的编号是select的序列号,有几个select就有几个id，并且id的顺序是按select出现的顺序增长的。</p>
+<p>id越大执行优先级越高，id相同则从上往下执行，id为null最后执行。</p>
+<h3 id="2-select-type列"><a href="#2-select-type列" class="headerlink" title="2.select_type列"></a>2.select_type列</h3><p>select_type表示对应行是简单还是复杂的查询</p>
+<ol>
+<li><p>simple：简单查询。查询不包含子查询和union</p>
+</li>
+<li><p>primary：复杂查询最外层的select</p>
+</li>
+<li><p>subquery：包含在select中的子查询(不在from语句中)</p>
+</li>
+<li><p>derived: 包含在from子句中的子查询。mysql将结果存放在一个临时表中，也称为派生表（）</p>
+<ol>
+<li>ex：</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">set</span> session optimizer_switch<span class="hljs-operator">=</span><span class="hljs-string">&#x27;derived_merge=off&#x27;</span>; #关闭mysql5<span class="hljs-number">.7</span>新特性对衍生表的合并优化 <br>mysql<span class="hljs-operator">&gt;</span> explain <span class="hljs-keyword">select</span> (<span class="hljs-keyword">select</span> <span class="hljs-number">1</span> <span class="hljs-keyword">from</span> actor <span class="hljs-keyword">where</span> id <span class="hljs-operator">=</span> <span class="hljs-number">1</span>) <span class="hljs-keyword">from</span> (<span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> film <span class="hljs-keyword">where</span> id <span class="hljs-operator">=</span> <span class="hljs-number">1</span>) der;<br><br></code></pre></td></tr></table></figure>
+
+<img src="C:\Users\TC\AppData\Roaming\Typora\typora-user-images\image-20221121192021528.png" srcset="/img/loading.gif" lazyload alt="image-20221121192021528" style="zoom:200%;" />
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">set</span> session optimizer_switch<span class="hljs-operator">=</span><span class="hljs-string">&#x27;derived_merge=on&#x27;</span>; #还原默认配置<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>union:在union中的第二个和随后的select</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> explain <span class="hljs-keyword">select</span> <span class="hljs-number">1</span> <span class="hljs-keyword">union</span> <span class="hljs-keyword">all</span> <span class="hljs-keyword">select</span> <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="3-table列"><a href="#3-table列" class="headerlink" title="3.table列"></a>3.table列</h3><p>这一列表示explain的一行正在访问哪个表。当from子句中有子查询时，table列是<derivenN>格式，表示当前查询依赖id&#x3D;N的查询，于是先执行id&#x3D;N的查询。当有union时，UNION RESULT的table列的值为&lt;union1,2&gt;,1和2表示参与union的select行id</p>
+<h3 id="4-type列"><a href="#4-type列" class="headerlink" title="4.type列"></a>4.type列</h3><p>这一列表示<strong>关联类型或访问类型</strong>，即sql决定如何查找表中的行，查找数据记录的大概范围。</p>
+<p>依次从最优到最差分别为：system &gt; const &gt; eq_ref &gt; ref &gt; range &gt; index &gt; all</p>
+<p>一般来说，得保证查询达到range级别，最好达到ref</p>
+<ul>
+<li><p>NULL：mysql能够在优化阶段分解查询语句，在执行阶段用不着再访问表或者索引。</p>
+<p>例如：在索引中选取最小值，可以单独查找索引来完成，不需要在执行时访问表。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> explain <span class="hljs-keyword">select</span> <span class="hljs-built_in">min</span>(id) <span class="hljs-keyword">from</span> film;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<img src="C:\Users\TC\AppData\Roaming\Typora\typora-user-images\image-20221121200935499.png" srcset="/img/loading.gif" lazyload alt="image-20221121200935499" style="zoom:200%;" />
+
+<ul>
+<li><p>const，system：</p>
+<p>mysql能对查询的部分进行优化并将其<strong>转化为一个常量</strong>(可以看show warnings的结果)。用于primary key或unique key的所有列与常数比较时，所以表最多只有一个匹配行，读取一次，速度比较快。<strong>system是const的特例</strong>，表里只有一条元组匹配时为system</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> explain extended <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> (<span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> film <span class="hljs-keyword">where</span> id <span class="hljs-operator">=</span> <span class="hljs-number">1</span>) tmp;<br></code></pre></td></tr></table></figure>
+
+<img src="C:\Users\TC\AppData\Roaming\Typora\typora-user-images\image-20221121201856246.png" srcset="/img/loading.gif" lazyload alt="image-20221121201856246" style="zoom:200%;" />
+</li>
+<li><p>eq_ref: primary key 或 unique key索引的所有部分被连接使用，最多只会返回一条符合条件的记录，这可能是在const之外最好的连接类型了</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> explain <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> film_actor <span class="hljs-keyword">left</span> <span class="hljs-keyword">join</span> film <span class="hljs-keyword">on</span> film_actor.film_id <span class="hljs-operator">=</span> film.id;<br></code></pre></td></tr></table></figure>
+
+<img src="C:\Users\TC\AppData\Roaming\Typora\typora-user-images\image-20221121202249559.png" srcset="/img/loading.gif" lazyload alt="image-20221121202249559" style="zoom:200%;" />
+</li>
+<li><p>ref：相比eq_ref,不适用唯一索引，而是使用普通索引或者唯一性索引的部分前缀，索引要和某个值相比较，可能会找到多个符合条件的行</p>
+<ul>
+<li><p>简单的select语句。name是普通索引(非唯一索引)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> explain <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> film <span class="hljs-keyword">where</span> name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;film1&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<img src="C:\Users\TC\AppData\Roaming\Typora\typora-user-images\image-20221121202718910.png" srcset="/img/loading.gif" lazyload alt="image-20221121202718910" style="zoom:200%;" />
+</li>
+<li><p>关联表查询，idx_film_actor_id是film_id和actor_id的联合索引，这里使用到了film_actor的左边前缀film_id部分。</p>
+</li>
+</ul>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> explain <span class="hljs-keyword">select</span> film_id <span class="hljs-keyword">from</span> film <span class="hljs-keyword">left</span> <span class="hljs-keyword">join</span> film_actor <span class="hljs-keyword">on</span> film.id <span class="hljs-operator">=</span> film_actor.fi<br>lm_id;<br></code></pre></td></tr></table></figure>
+
+  <img src="C:\Users\TC\AppData\Roaming\Typora\typora-user-images\image-20221121202839166.png" srcset="/img/loading.gif" lazyload alt="image-20221121202839166" style="zoom:200%;" />
+</li>
+<li><p>range：范围扫描通常出现在in(),between，&gt;,&lt;，&gt;&#x3D;等操作的。使用一个索引来检索给定范围的行</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">explain <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> actor <span class="hljs-keyword">where</span> id <span class="hljs-operator">&gt;</span> <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
+
+<img src="C:\Users\TC\AppData\Roaming\Typora\typora-user-images\image-20221121203035557.png" srcset="/img/loading.gif" lazyload alt="image-20221121203035557" style="zoom:200%;" />
+</li>
+<li><p>index：扫描全表索引就能拿到结果，一般是扫描某个二级索引，这种扫描不会从索引树根节点开始快速查找，而是直接对二级索引的叶子节点遍历和扫描，速度还是比较慢的，这种查询一般为使用覆盖索引，二级索引一般比较小，所以这种通常比all快一些。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> explain <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> film;<br></code></pre></td></tr></table></figure>
+
+<img src="C:\Users\TC\AppData\Roaming\Typora\typora-user-images\image-20221121203310165.png" srcset="/img/loading.gif" lazyload alt="image-20221121203310165" style="zoom:200%;" />
+</li>
+<li><p>all：即全表扫描，扫描你的聚簇索引的所有叶子节点，通常这种情况下就需要加索引进行优化了</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> explain <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> actor;<br></code></pre></td></tr></table></figure>
+
+<img src="C:\Users\TC\AppData\Roaming\Typora\typora-user-images\image-20221121203425215.png" srcset="/img/loading.gif" lazyload alt="image-20221121203425215" style="zoom:200%;" /></li>
+</ul>
 
                 
               </div>
@@ -319,7 +387,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%A8%B1%E4%B9%90-%E5%9B%B4%E6%A3%8B/" class="category-chain-item">/娱乐/围棋</a>
+  <a href="/categories/%E5%AD%A6%E4%B9%A0-%E8%BF%9B%E9%98%B6-mysql/" class="category-chain-item">/学习/进阶/mysql</a>
   
   
 
@@ -334,7 +402,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%BF%AB%E4%B9%90%E5%9B%B4%E6%A3%8B/">#快乐围棋</a>
+        <a href="/tags/%E5%88%B7%E9%A2%98/">#刷题</a>
       
     </div>
   
@@ -346,8 +414,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>2022-08-21围棋复盘</div>
-      <div>http://example.com/2022/08/25/围棋复盘/</div>
+      <div>Explain</div>
+      <div>http://example.com/2022/11/17/Explain详解/</div>
     </div>
     <div class="license-meta">
       
@@ -359,7 +427,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年8月25日</div>
+          <div>2022年11月17日</div>
         </div>
       
       
@@ -389,18 +457,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/08/25/%E6%9C%AA%E5%BD%92%E6%A1%A3/" title="未归档题目">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">未归档题目</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/08/25/%E5%89%91%E6%8C%87offer%E2%85%A1/" title="剑指offerⅡ">
-                        <span class="hidden-mobile">剑指offerⅡ</span>
+                      <a href="/2022/11/13/%E6%AF%94%E8%B5%9B%E9%A2%98/" title="比赛题">
+                        <span class="hidden-mobile">比赛题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
